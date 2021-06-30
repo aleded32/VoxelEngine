@@ -1,0 +1,4 @@
+﻿  shader.cpp
+D:\GitHub\VoxelEngine\src\shader.cpp(13,8): warning C4101: 'buf': unreferenced local variable
+D:\GitHub\VoxelEngine\src\shader.cpp(107): warning C4715: 'shader::compileShader': not all control paths return a value
+  VoxelEngine.vcxproj -> D:\GitHub\VoxelEngine\Debug\VoxelEngine.exe

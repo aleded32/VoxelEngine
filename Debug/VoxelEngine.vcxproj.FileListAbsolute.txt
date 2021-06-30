@@ -1,0 +1,2 @@
+D:\GitHub\VoxelEngine\Debug\VoxelEngine.exe
+D:\GitHub\VoxelEngine\Debug\VoxelEngine.pdb
