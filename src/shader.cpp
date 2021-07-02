@@ -47,7 +47,7 @@ shader::shader(const char* filepath)
 
 		m_rendererID = createShader(m_vertexShader, m_fragmentShader);
 		glUseProgram(m_rendererID);
-		std::cout << m_fragmentShader << std::endl;
+		
 	}
 }
 
@@ -79,16 +79,16 @@ unsigned int shader::compileShader(const std::string& source, unsigned int type)
 
 	const char* src = source.c_str();
 
-	if (src != nullptr) 
+	if (src != nullptr)
 	{
 		glShaderSource(shaderID, 1, &src, nullptr);
 		glCompileShader(shaderID);
 
 
 		int result;
-		glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &result);
+		glGetShaderiv(shaderID, GL_COMPILE_STATUS, &result);
 
-		if (result == GL_FALSE) 
+		if (result == GL_FALSE)
 		{
 			int length;
 			glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &length);
@@ -102,6 +102,8 @@ unsigned int shader::compileShader(const std::string& source, unsigned int type)
 
 
 		}
+
+		return shaderID;
 	}
 
 }

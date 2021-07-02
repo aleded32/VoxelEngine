@@ -47,20 +47,20 @@ void window::onStart()
     va = new vertexArray();
     vb = new vertexBuffer(sizeof(vertex),vertex);
     ib = new indexBuffer();
-    Shader = new shader("assets/shader/default.shader");
     layout.add<float>(3);
     layout.add<float>(4);
+    layout.add<float>(2);
     va->addBufferLayout(*vb, layout);
-
-   
-    
+    Shader = new shader("assets/shader/default.shader");
+    tex = new texture("assets/Textures/testTex.png");
+    tex->bind();
 
 
 
     ib->unbind();
-    Shader->unbind();
     vb->unbind();
     va->unbind();
+    Shader->unbind();
 
 }
 
@@ -94,6 +94,8 @@ void window::onRender()
     ib->bind();
     va->bind();
     Shader->bind();
+
+    Shader->setUniform1i("u_texture", 0);
 
     glDrawElements(GL_TRIANGLES, ib->getMaxIndexCount(), GL_UNSIGNED_INT, nullptr);
 }

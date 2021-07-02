@@ -1,4 +1,8 @@
-﻿  shader.cpp
-D:\GitHub\VoxelEngine\src\shader.cpp(13,8): warning C4101: 'buf': unreferenced local variable
-D:\GitHub\VoxelEngine\src\shader.cpp(107): warning C4715: 'shader::compileShader': not all control paths return a value
+﻿  VoxelEngine.cpp
+D:\GitHub\VoxelEngine\src\window.h(50,6): warning C4305: 'initializing': truncation from 'double' to 'float'
+  texture.cpp
+  window.cpp
+D:\GitHub\VoxelEngine\src\window.h(50,6): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Generating Code...
+D:\GitHub\VoxelEngine\src\shader.h(57): warning C4715: 'shader::getUniformLocation': not all control paths return a value
   VoxelEngine.vcxproj -> D:\GitHub\VoxelEngine\Debug\VoxelEngine.exe

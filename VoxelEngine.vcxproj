@@ -147,6 +147,8 @@
   <ItemGroup>
     <ClCompile Include="src\indexBuffer.cpp" />
     <ClCompile Include="src\shader.cpp" />
+    <ClCompile Include="src\texture.cpp" />
+    <ClCompile Include="src\vendor\stbi_image\stb_image.cpp" />
     <ClCompile Include="src\vertexArray.cpp" />
     <ClCompile Include="src\vertexBuffer.cpp" />
     <ClCompile Include="src\VoxelEngine.cpp" />
@@ -155,6 +157,8 @@
   <ItemGroup>
     <ClInclude Include="src\indexBuffer.h" />
     <ClInclude Include="src\shader.h" />
+    <ClInclude Include="src\texture.h" />
+    <ClInclude Include="src\vendor\stbi_image\stb_image.h" />
     <ClInclude Include="src\vertexArray.h" />
     <ClInclude Include="src\vertexBuffer.h" />
     <ClInclude Include="src\vertexBufferLayout.h" />
@@ -162,6 +166,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\shader\default.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\Textures\testTex.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

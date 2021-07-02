@@ -5,6 +5,7 @@
 #include "vertexBufferLayout.h"
 #include "indexBuffer.h"
 #include "shader.h"
+#include "texture.h"
 
 
 class window 
@@ -36,15 +37,15 @@ private:
     vertexBufferLayout layout;
     indexBuffer* ib;
     shader* Shader;
-    
+    texture* tex;
     
 
-    float vertex[28] =
+    float vertex[36] =
     {
-         -0.5f,0.5f,0.0f,0.2f,0.4f,0.6,1.0f,
-        -0.5f,-0.5f,0.0f,0.5f,0.4f,0.6,1.0f,
-         0.5f,-0.5f,0.0f,0.2f,0.4f,0.6,1.0f,
-         0.5f,0.5f,0.0f, 0.2f,0.4f,0.6,1.0f,
+         -0.5f,0.5f,0.0f,0.2f,0.4f,0.6,1.0f, 0.0f,1.0f,
+        -0.5f,-0.5f,0.0f,0.5f,0.4f,0.6,1.0f, 0.0f,0.0f,
+         0.5f,-0.5f,0.0f,0.2f,0.4f,0.6,1.0f, 1.0f,0.0f,
+         0.5f,0.5f,0.0f, 0.7f,0.4f,0.6,1.0f, 1.0f,1.0f
 
     };
 
