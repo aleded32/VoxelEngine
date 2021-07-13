@@ -4,6 +4,7 @@
 #include <sstream>
 #include <unordered_map>
 #include <iostream>
+#include "vendor/glm/glm.hpp"
 
 
 class shader 
@@ -24,6 +25,12 @@ public:
 	{
 		unsigned int location = getUniformLocation(uniformName);
 		glUniform1i(location, v0);
+	}
+
+	void setUniformMat4(const char* uniformName, const glm::mat4& matrix) 
+	{
+		unsigned int location = getUniformLocation(uniformName);
+		glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
 	}
 
 	const void bind() const { glUseProgram(m_rendererID); }

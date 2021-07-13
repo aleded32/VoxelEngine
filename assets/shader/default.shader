@@ -8,12 +8,14 @@ layout(location = 2)in vec2 texCoord;
 out vec4 v_color;
 out vec2 v_texCoord;
 
+uniform mat4 u_projection;
+uniform mat4 u_view;
 
 void main()
 {
 	v_color = color;
 	v_texCoord = texCoord;
-	gl_Position = vec4(position,1.0f);
+	gl_Position = u_projection * u_view * vec4(position,1.0f);
 };
 
 #shader fragment

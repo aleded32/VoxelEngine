@@ -6,6 +6,8 @@
 #include "indexBuffer.h"
 #include "shader.h"
 #include "texture.h"
+#include "Camera.h"
+
 
 
 class window 
@@ -19,6 +21,7 @@ public:
     void onUpdate();
     void onRender();
 
+   
     inline GLFWwindow* getWindow() {return m_window; }
     inline const int getWidth() const& { return m_width; }
     inline const int getHeight() const& { return m_height; }
@@ -38,7 +41,14 @@ private:
     indexBuffer* ib;
     shader* Shader;
     texture* tex;
-    
+    camera* cam;
+
+    float zoom = -3.0f;
+    float camX = 0.0f;
+    double xpos, ypos;
+   
+    float lastX = m_width / 2;
+    float lastY = m_height / 2;
 
     float vertex[36] =
     {

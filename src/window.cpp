@@ -55,20 +55,73 @@ void window::onStart()
     tex = new texture("assets/Textures/testTex.png");
     tex->bind();
 
+    cam = new camera(getWidth(), getHeight(), glm::radians(45.0f), 0.1f, 1000.0f);
 
+    cam->setPositon(camX, 0, zoom);
+
+    cam->setCameraView();
 
     ib->unbind();
     vb->unbind();
     va->unbind();
     Shader->unbind();
 
+    glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
 }
+
+
 
 void window::onUpdate()
 {
+
+
     while (!glfwWindowShouldClose(m_window))
     {
+        glfwGetCursorPos(m_window, &xpos, &ypos);
+
        
+
+        float offsetX = xpos- lastX;
+        float offsetY = lastY - ypos;
+        offsetX *= 0.01f;
+        offsetY *= 0.01f;
+       
+
+        cam->processMouseCamDir(offsetX, offsetY);
+
+        lastX = xpos; 
+        lastY = ypos;
+        
+
+
+        if (glfwGetKey(m_window, GLFW_KEY_S) == GLFW_PRESS)
+        {
+            zoom-=0.1f;
+
+        }
+        else if (glfwGetKey(m_window, GLFW_KEY_W) == GLFW_PRESS)
+        {
+            zoom+= 0.1f;
+            
+        }
+        if (glfwGetKey(m_window, GLFW_KEY_A) == GLFW_PRESS)
+        {
+            camX+= 0.1f;
+
+        }
+        else if (glfwGetKey(m_window, GLFW_KEY_D) == GLFW_PRESS)
+        {
+            camX-= 0.1f;
+
+        }
+
+        
+
+        //rotation along the y axis affects the x and z axis, which is why we multiply the cos(pitch) of both x's and y's yaw. 
+       
+
+        cam->setPositon(camX, 0, zoom);
         onRender();
 
         glfwSwapBuffers(m_window);
@@ -77,7 +130,7 @@ void window::onUpdate()
 
     }
 
-    
+   
 
 
 
@@ -96,6 +149,8 @@ void window::onRender()
     Shader->bind();
 
     Shader->setUniform1i("u_texture", 0);
+    Shader->setUniformMat4("u_projection", cam->getProjection());
+    Shader->setUniformMat4("u_view", cam->getView());
 
     glDrawElements(GL_TRIANGLES, ib->getMaxIndexCount(), GL_UNSIGNED_INT, nullptr);
 }
