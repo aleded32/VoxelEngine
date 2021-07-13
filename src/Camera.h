@@ -20,6 +20,12 @@ public:
 		setCameraView();
 	}
 
+	void setPositon(glm::vec3& position)
+	{
+		m_position = glm::vec3(position);
+		setCameraView();
+	}
+
 	inline const glm::vec3 getPosition() const
 	{
 		return m_position;
@@ -76,6 +82,7 @@ public:
 	float pitch = 0.0f;
 	glm::vec3 camDir;
 	glm::vec3 m_camFront;
+	glm::vec3 m_camUp;
 
 private:
 
@@ -84,8 +91,9 @@ private:
 	glm::vec3 m_position;
 
 	//camFront is the vector that the camera is facing.
+	//camUp is the up vector facing upwards.
 	
-	glm::vec3 m_camUp;
+	
 	
 
 

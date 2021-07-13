@@ -57,7 +57,7 @@ void window::onStart()
 
     cam = new camera(getWidth(), getHeight(), glm::radians(45.0f), 0.1f, 1000.0f);
 
-    cam->setPositon(camX, 0, zoom);
+    cam->setPositon(0, 0, 5.0f);
 
     cam->setCameraView();
 
@@ -92,36 +92,37 @@ void window::onUpdate()
 
         lastX = xpos; 
         lastY = ypos;
+       
         
-
 
         if (glfwGetKey(m_window, GLFW_KEY_S) == GLFW_PRESS)
         {
-            zoom-=0.1f;
+            camPosition -= 0.1f * cam->m_camFront;
 
         }
         else if (glfwGetKey(m_window, GLFW_KEY_W) == GLFW_PRESS)
         {
-            zoom+= 0.1f;
+            camPosition += 0.1f * cam->m_camFront;
             
         }
         if (glfwGetKey(m_window, GLFW_KEY_A) == GLFW_PRESS)
         {
-            camX+= 0.1f;
+            camPosition -= glm::normalize(glm::cross(cam->m_camFront, cam->m_camUp)) * 0.1f;
 
         }
         else if (glfwGetKey(m_window, GLFW_KEY_D) == GLFW_PRESS)
         {
-            camX-= 0.1f;
+            camPosition += glm::normalize(glm::cross(cam->m_camFront, cam->m_camUp)) * 0.1f;
 
         }
 
         
 
         //rotation along the y axis affects the x and z axis, which is why we multiply the cos(pitch) of both x's and y's yaw. 
+        //glm cross works out the resulting cross product vector between the front facing vector and the up facing vector resulting the correct vector for left and right
        
-
-        cam->setPositon(camX, 0, zoom);
+        cam->setPositon(camPosition);
+        
         onRender();
 
         glfwSwapBuffers(m_window);

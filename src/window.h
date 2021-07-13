@@ -43,9 +43,9 @@ private:
     texture* tex;
     camera* cam;
 
-    float zoom = -3.0f;
-    float camX = 0.0f;
+    
     double xpos, ypos;
+    glm::vec3 camPosition;
    
     float lastX = m_width / 2;
     float lastY = m_height / 2;
