@@ -67,7 +67,7 @@ public:
 	//this process the the mouse position and converts the offset to yaw and pitch for camera rotation
 	void processMouseCamDir(float &xOffset, float &yOffset) 
 	{
-		std::cout << xOffset << std::endl;
+		
 		yaw += xOffset;
 		pitch += yOffset;
 

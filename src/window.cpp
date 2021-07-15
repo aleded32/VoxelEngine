@@ -37,34 +37,21 @@ window::window(int width, int height, const char* name)
 
 window::~window()
 {
-    delete vb;
-    delete va;
-    delete Shader;
+    
 }
 
 void window::onStart()
 {
-    va = new vertexArray();
-    vb = new vertexBuffer(sizeof(vertex),vertex);
-    ib = new indexBuffer();
-    layout.add<float>(3);
-    layout.add<float>(4);
-    layout.add<float>(2);
-    va->addBufferLayout(*vb, layout);
-    Shader = new shader("assets/shader/default.shader");
-    tex = new texture("assets/Textures/testTex.png");
-    tex->bind();
+    
+    renderer = new quadRenderer(1000);
 
     cam = new camera(getWidth(), getHeight(), glm::radians(45.0f), 0.1f, 1000.0f);
 
-    cam->setPositon(0, 0, 5.0f);
+    cam->setPositon(0, 0, 200.0f);
 
     cam->setCameraView();
 
-    ib->unbind();
-    vb->unbind();
-    va->unbind();
-    Shader->unbind();
+ 
 
     glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
@@ -97,22 +84,22 @@ void window::onUpdate()
 
         if (glfwGetKey(m_window, GLFW_KEY_S) == GLFW_PRESS)
         {
-            camPosition -= 0.1f * cam->m_camFront;
+            camPosition -= 0.2f * cam->m_camFront;
 
         }
         else if (glfwGetKey(m_window, GLFW_KEY_W) == GLFW_PRESS)
         {
-            camPosition += 0.1f * cam->m_camFront;
+            camPosition += 0.2f * cam->m_camFront;
             
         }
         if (glfwGetKey(m_window, GLFW_KEY_A) == GLFW_PRESS)
         {
-            camPosition -= glm::normalize(glm::cross(cam->m_camFront, cam->m_camUp)) * 0.1f;
+            camPosition -= glm::normalize(glm::cross(cam->m_camFront, cam->m_camUp)) * 0.2f;
 
         }
         else if (glfwGetKey(m_window, GLFW_KEY_D) == GLFW_PRESS)
         {
-            camPosition += glm::normalize(glm::cross(cam->m_camFront, cam->m_camUp)) * 0.1f;
+            camPosition += glm::normalize(glm::cross(cam->m_camFront, cam->m_camUp)) * 0.2f;
 
         }
 
@@ -141,17 +128,12 @@ void window::onUpdate()
 
 void window::onRender()
 {
-    glClear(GL_COLOR_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glClearColor(0.1f, 0.5f, 0.9f, 1.0f);
 
-    ib->bind();
-    va->bind();
-    Shader->bind();
+    renderer->draw(cam);
 
-    Shader->setUniform1i("u_texture", 0);
-    Shader->setUniformMat4("u_projection", cam->getProjection());
-    Shader->setUniformMat4("u_view", cam->getView());
-
-    glDrawElements(GL_TRIANGLES, ib->getMaxIndexCount(), GL_UNSIGNED_INT, nullptr);
+   
 }

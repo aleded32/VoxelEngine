@@ -1,12 +1,6 @@
 #pragma once
 #include <iostream>
-#include "vertexBuffer.h"
-#include "vertexArray.h"
-#include "vertexBufferLayout.h"
-#include "indexBuffer.h"
-#include "shader.h"
-#include "texture.h"
-#include "Camera.h"
+#include "quadRenderer.h"
 
 
 
@@ -34,15 +28,9 @@ private:
     const char* m_name;
     GLenum err;
 
-    //normal variables for application use
-    vertexArray* va;
-    vertexBuffer* vb;
-    vertexBufferLayout layout;
-    indexBuffer* ib;
-    shader* Shader;
-    texture* tex;
+   
     camera* cam;
-
+    quadRenderer* renderer;
     
     double xpos, ypos;
     glm::vec3 camPosition;
@@ -50,15 +38,6 @@ private:
     float lastX = m_width / 2;
     float lastY = m_height / 2;
 
-    float vertex[36] =
-    {
-         -0.5f,0.5f,0.0f,0.2f,0.4f,0.6,1.0f, 0.0f,1.0f,
-        -0.5f,-0.5f,0.0f,0.5f,0.4f,0.6,1.0f, 0.0f,0.0f,
-         0.5f,-0.5f,0.0f,0.2f,0.4f,0.6,1.0f, 1.0f,0.0f,
-         0.5f,0.5f,0.0f, 0.7f,0.4f,0.6,1.0f, 1.0f,1.0f
-
-    };
-
-    unsigned int indicies[6] = { 0,1,2,2,3,0 };
+    
 
 };

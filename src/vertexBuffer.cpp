@@ -1,4 +1,5 @@
 #include "vertexBuffer.h"
+#include "quadRenderer.h"
 
 vertexBuffer::vertexBuffer(unsigned int maxVertexCount)
 {

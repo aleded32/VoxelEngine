@@ -4,16 +4,6 @@
 #include <iostream>
 
 
-struct vertex
-{
-	float x;
-	float y;
-	float z;
-	float r;
-	float g;
-	float b;
-	float a;
-};
 
 class vertexBuffer 
 {
@@ -28,6 +18,7 @@ public:
 
 	const void bind() const { glBindBuffer(GL_ARRAY_BUFFER, m_RendererID); }
 	const void unbind() const { glBindBuffer(GL_ARRAY_BUFFER, 0); }
+	inline const unsigned int getRendererID() const& { return m_RendererID; }
 
 private:
 

@@ -59,7 +59,8 @@ private:
 		}
 		else 
 		{
-			std::cout << "uniform" << uniformName << "does not exist" << std::endl;
+			
+			std::cout << "uniform " << uniformName << " " << "does not exist" << std::endl;
 		}
 	}
 
