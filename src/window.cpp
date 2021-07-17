@@ -43,7 +43,7 @@ window::~window()
 void window::onStart()
 {
     
-    renderer = new quadRenderer(1000);
+    renderer = new quadRenderer(1000000);
 
     cam = new camera(getWidth(), getHeight(), glm::radians(45.0f), 0.1f, 1000.0f);
 

@@ -18,6 +18,16 @@ struct vertex
 
 };
 
+struct quad 
+{
+	vertex vertices[4];
+};
+
+struct cube 
+{
+	std::vector<quad> quadFaces;
+};
+
 class quadRenderer 
 {
 public:
@@ -27,179 +37,193 @@ public:
 
 	void draw(camera* cam);
 
-	static vertex* createQuadFront(vertex* targetQuad, float x, float y, float  z, float textureID, float size) 
+	static quad createQuadFront(float x, float y, float  z, float textureID, float size) 
 	{
-		targetQuad->position = {x,y,z};
-		targetQuad->texCoord = { 0.0f, 0.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		quad targetQuad;
+		targetQuad.vertices[0].position = {x,y,z};
+		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
+		targetQuad.vertices[0].texID = textureID;
 
-		targetQuad->position = { x + size,y,z };
-		targetQuad->texCoord = { 1.0f, 0.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[1].position = { x + size,y,z };
+		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
+		targetQuad.vertices[1].texID = textureID;
 
-		targetQuad->position = { x + size,y + size,z };
-		targetQuad->texCoord = { 1.0f, 1.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[2].position = { x + size,y + size,z };
+		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
+		targetQuad.vertices[2].texID = textureID;
 
-		targetQuad->position = { x,y + size,z };
-		targetQuad->texCoord = { 0.0f, 1.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[3].position = { x,y + size,z };
+		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
+		targetQuad.vertices[3].texID = textureID;
+
 	
 		return targetQuad;
 
 	}
 
-	static vertex* createQuadUp(vertex* targetQuad, float x, float y, float z, float textureID, float size)
+	static quad createQuadUp(float x, float y, float  z, float textureID, float size)
 	{
-		targetQuad->position = { x,y,z};
-		targetQuad->texCoord = { 0.0f, 0.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		quad targetQuad;
+		targetQuad.vertices[0].position = { x,y,z};
+		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
+		targetQuad.vertices[0].texID = textureID;
 
-		targetQuad->position = { x,y,z + size };
-		targetQuad->texCoord = { 1.0f, 0.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
 
-		targetQuad->position = { x + size,y,z + size};
-		targetQuad->texCoord = { 1.0f, 1.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[1].position = { x,y,z + size };
+		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
+		targetQuad.vertices[1].texID = textureID;
 
-		targetQuad->position = { x + size,y,z };
-		targetQuad->texCoord = { 0.0f, 1.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[2].position = { x + size,y,z + size};
+		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
+		targetQuad.vertices[2].texID = textureID;
+
+		targetQuad.vertices[3].position = { x + size,y,z };
+		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
+		targetQuad.vertices[3].texID = textureID;
+
 
 		return targetQuad;
 
 	}
 
-	static vertex* createQuadDown(vertex* targetQuad, float x, float y, float z, float textureID, float size)
+	static quad createQuadDown(float x, float y, float  z, float textureID, float size)
 	{
-		targetQuad->position = { x,y + size,z };
-		targetQuad->texCoord = { 0.0f, 0.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		quad targetQuad;
+		targetQuad.vertices[0].position = { x,y + size,z };
+		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
+		targetQuad.vertices[0].texID = textureID;
+		
 
-		targetQuad->position = { x,y + size,z + size };
-		targetQuad->texCoord = { 1.0f, 0.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[1].position = { x,y + size,z + size };
+		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
+		targetQuad.vertices[1].texID = textureID;
+		
 
-		targetQuad->position = { x + size,y + size,z + size };
-		targetQuad->texCoord = { 1.0f, 1.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[2].position = { x + size,y + size,z + size };
+		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
+		targetQuad.vertices[2].texID = textureID;
+		
 
-		targetQuad->position = { x + size,y + size,z };
-		targetQuad->texCoord = { 0.0f, 1.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[3].position = { x + size,y + size,z };
+		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
+		targetQuad.vertices[3].texID = textureID;
+		
 
 		return targetQuad;
 
 	}
 
-	static vertex* createQuadBack(vertex* targetQuad, float x, float y, float z, float textureID, float size)
+	static quad createQuadBack(float x, float y, float  z, float textureID, float size)
 	{
-		targetQuad->position = { x,y,z + size};
-		targetQuad->texCoord = { 0.0f, 0.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		quad targetQuad;
+		targetQuad.vertices[0].position = { x,y,z + size};
+		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
+		targetQuad.vertices[0].texID = textureID;
+		
 
-		targetQuad->position = { x + size,y,z + size};
-		targetQuad->texCoord = { 1.0f, 0.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[1].position = { x + size,y,z + size};
+		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
+		targetQuad.vertices[1].texID = textureID;
+		
 
-		targetQuad->position = { x + size,y + size,z + size};
-		targetQuad->texCoord = { 1.0f, 1.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[2].position = { x + size,y + size,z + size};
+		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
+		targetQuad.vertices[2].texID = textureID;
+		
 
-		targetQuad->position = { x,y + size,z + size};
-		targetQuad->texCoord = { 0.0f, 1.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[3].position = { x,y + size,z + size};
+		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
+		targetQuad.vertices[3].texID = textureID;
+		
 
 		return targetQuad;
 
 	}
 
-	static vertex* createQuadLeft(vertex* targetQuad, float x, float y, float z, float textureID, float size)
+	static quad createQuadLeft(float x, float y, float  z, float textureID, float size)
 	{
-		targetQuad->position = { x,y,z };
-		targetQuad->texCoord = { 0.0f, 0.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		quad targetQuad;
+		targetQuad.vertices[0].position = { x,y,z };
+		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
+		targetQuad.vertices[0].texID = textureID;
+		
 
-		targetQuad->position = { x,y,z + size };
-		targetQuad->texCoord = { 1.0f, 0.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[1].position = { x,y,z + size };
+		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
+		targetQuad.vertices[1].texID = textureID;
+		
 
-		targetQuad->position = { x,y + size,z + size };
-		targetQuad->texCoord = { 1.0f, 1.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[2].position = { x,y + size,z + size };
+		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
+		targetQuad.vertices[2].texID = textureID;
+		
 
-		targetQuad->position = { x,y + size,z };
-		targetQuad->texCoord = { 0.0f, 1.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[3].position = { x,y + size,z };
+		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
+		targetQuad.vertices[3].texID = textureID;
+		
 
 		return targetQuad;
 
 	}
 
-	static vertex* createQuadRight(vertex* targetQuad, float x, float y, float z, float textureID, float size)
+	static quad createQuadRight(float x, float y, float  z, float textureID, float size)
 	{
-		targetQuad->position = { x + size,y,z };
-		targetQuad->texCoord = { 0.0f, 0.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		quad targetQuad;
+		targetQuad.vertices[0].position = { x + size,y,z };
+		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
+		targetQuad.vertices[0].texID = textureID;
+		
 
-		targetQuad->position = { x + size,y,z + size };
-		targetQuad->texCoord = { 1.0f, 0.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[1].position = { x + size,y,z + size };
+		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
+		targetQuad.vertices[1].texID = textureID;
+		
 
-		targetQuad->position = { x + size,y + size,z + size };
-		targetQuad->texCoord = { 1.0f, 1.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[2].position = { x + size,y + size,z + size };
+		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
+		targetQuad.vertices[2].texID = textureID;
+		
 
-		targetQuad->position = { x + size,y + size,z };
-		targetQuad->texCoord = { 0.0f, 1.0f };
-		targetQuad->texID = textureID;
-		targetQuad++;
+		targetQuad.vertices[3].position = { x + size,y + size,z };
+		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
+		targetQuad.vertices[3].texID = textureID;
+		
 
 		return targetQuad;
 
 	}
 
-	vertex* vertArray;
+	
 
-	inline void setSize(glm::vec2& size) 
+	static cube m_cube(float x, float y, float z) 
 	{
-		m_size = size;
-	}
+		cube targetCube;
+		for (int i = 0; i < 6; i++)
+		{
+			targetCube.quadFaces.push_back(quad{});
+		}
+			targetCube.quadFaces[0] = createQuadFront(x, y, z, 0.0f, 1.0f);
+			targetCube.quadFaces[1] = createQuadUp(x, y, z, 0.0f, 1.0f);
+			targetCube.quadFaces[2] = createQuadDown(x, y, z, 0.0f, 1.0f);
+			targetCube.quadFaces[3] = createQuadBack(x, y, z, 0.0f, 1.0f);
+			targetCube.quadFaces[4] = createQuadLeft(x, y, z, 0.0f, 1.0f);
+			targetCube.quadFaces[5] = createQuadRight(x, y, z, 0.0f, 1.0f);
+		
 
-	inline const glm::vec2 getSize() const& { return m_size; }
+		return targetCube;
+	}
 
 	
 
 private:
 
-	vertex* vertices;
 	
 	
-	glm::vec2 m_size;
+	
+	const int m_maxVertexCount;
+	std::vector<cube> buffer;
+	bool terrainGen = false;
 
 	//normal variables for application use
 	vertexArray* va;
@@ -208,5 +232,13 @@ private:
 	indexBuffer* ib;
 	shader* Shader;
 	texture* tex;
+
+	enum class faces {front,up,down,back,left,right};
+
+	faces currentFace = faces::front;
+
+	void createCube(float x, float y, float z, faces currentFace);
+
+	void CubeDetection(faces currentFace);
 
 };

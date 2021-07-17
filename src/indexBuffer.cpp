@@ -1,8 +1,9 @@
 #include "indexBuffer.h"
 
-indexBuffer::indexBuffer()	
+indexBuffer::indexBuffer(const unsigned int& maxIndexCount)	
+	:m_maxIndexCount(maxIndexCount)
 {
-	
+	m_indicies = new unsigned int[m_maxIndexCount];
 
 	glGenBuffers(1, &m_RendererID);
 	bind();
@@ -25,6 +26,7 @@ indexBuffer::indexBuffer()
 }
 
 indexBuffer::indexBuffer(unsigned int size, const void* data)
+	:m_maxIndexCount(0)
 {
 	glGenBuffers(1, &m_RendererID);
 	bind();

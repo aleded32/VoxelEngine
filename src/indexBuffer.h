@@ -7,7 +7,7 @@ class indexBuffer
 {
 public:
 
-	indexBuffer();
+	indexBuffer(const unsigned int& maxIndexCount);
 	indexBuffer(unsigned int size, const void* data);
 	~indexBuffer();
 
@@ -20,7 +20,7 @@ private:
 
 	unsigned int m_RendererID;
 	unsigned int m_offset = 0;
-	unsigned int m_indicies[6000];
-	unsigned int m_maxIndexCount = 6000;
+	unsigned int* m_indicies;
+	const unsigned int m_maxIndexCount;
 
 };

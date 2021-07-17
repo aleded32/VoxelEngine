@@ -1,11 +1,15 @@
 #include "quadRenderer.h"
 
 quadRenderer::quadRenderer(const int maxVertCount)
+	:m_maxVertexCount(maxVertCount)
 {
 
 	va = new vertexArray();
-	vb = new vertexBuffer(100000);
-	ib = new indexBuffer();
+	vb = new vertexBuffer(m_maxVertexCount);
+
+	const int maxIndex = (m_maxVertexCount / 4) * 6;
+
+	ib = new indexBuffer(maxIndex);
 	layout.add<float>(3);
 	layout.add<float>(2);
 	layout.add<float>(1);
@@ -16,7 +20,6 @@ quadRenderer::quadRenderer(const int maxVertCount)
 
 	
 
-	vertArray[maxVertCount];
 
 
 	ib->unbind();
@@ -24,12 +27,13 @@ quadRenderer::quadRenderer(const int maxVertCount)
 	va->unbind();
 	Shader->unbind();
 
+	
 
 }
 
 quadRenderer::~quadRenderer()
 {
-	delete vertArray;
+	
 	delete vb;
 	delete va;
 	delete Shader;
@@ -46,35 +50,68 @@ void quadRenderer::draw(camera* cam)
 	Shader->setUniformMat4("u_projection", cam->getProjection());
 	Shader->setUniformMat4("u_view", cam->getView());
 
-	std::array<vertex, 25000> quads;
-	auto buffer = quads.data();
 	
-	for(int x = 0; x < 5; x++)
-	{
-		for (int y = 0; y < 5; y++)
+	if (terrainGen == false) {
+
+		for (float x = 0; x < 40000; x++)
 		{
-			for (int z = 0; z < 5; z++)
+			for (float y = 0; y < 1; y++)
 			{
-				buffer = createQuadFront(buffer, x, y, z, 0.0f, 1.0f);
-				buffer = createQuadUp(buffer, x, y, z, 0.0f, 1.0f);
-				buffer = createQuadDown(buffer, x, y, z, 0.0f, 1.0f);
-				buffer = createQuadBack(buffer, x, y, z, 0.0f, 1.0f);
-				buffer = createQuadLeft(buffer, x, y, z, 0.0f, 1.0f);
-				buffer = createQuadRight(buffer, x, y, z, 0.0f, 1.0f);
+				for (float z = 0; z < 1; z++)
+				{
+
+					createCube(x, y, z, faces::front);
+
+					
+
+				}
 			}
 		}
+
+		terrainGen = true;
 	}
 	
-
-	std::cout << sizeof(quads) << std::endl;
 	
 	
+	//CubeDetection(currentFace);
+	
+	cube quadss[6];
+	std::cout << sizeof(cube::quadFaces.data()) << std::endl;
 	
 	
 
 	glBindBuffer(GL_ARRAY_BUFFER, vb->getRendererID());
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(quads), quads.data());
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(quadss)   * buffer.size(), &buffer[0]);
 
 	glDrawElements(GL_TRIANGLES, ib->getMaxIndexCount(), GL_UNSIGNED_INT, nullptr);
 	
+}
+
+void quadRenderer::createCube(float x, float y, float z, faces currentFace)
+{
+	
+	
+	
+	buffer.push_back(m_cube(x, y, z));
+
+	
+	
+}
+
+void quadRenderer::CubeDetection(faces currentFace)
+{
+	for (int i = 0; i < 39999; i++) {
+		if (buffer[i].quadFaces[5].vertices[0].position.x == buffer[i+1].quadFaces[4].vertices[0].position.x)
+		{
+
+			
+
+			
+			
+				buffer[i].quadFaces.erase(buffer[i].quadFaces.begin() + 5);
+				buffer[i+1].quadFaces.erase(buffer[i+1].quadFaces.begin() + 4);
+			
+			
+		}
+	}
 }

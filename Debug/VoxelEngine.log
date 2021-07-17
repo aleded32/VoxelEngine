@@ -1,21 +1,3 @@
 ﻿  quadRenderer.cpp
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(58,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(58,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(58,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(59,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(59,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(59,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(60,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(60,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(60,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(61,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(61,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(61,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(62,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(62,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(62,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(63,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(63,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(63,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 D:\GitHub\VoxelEngine\src\shader.h(65): warning C4715: 'shader::getUniformLocation': not all control paths return a value
   VoxelEngine.vcxproj -> D:\GitHub\VoxelEngine\Debug\VoxelEngine.exe
