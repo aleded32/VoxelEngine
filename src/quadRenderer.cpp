@@ -1,5 +1,9 @@
 #include "quadRenderer.h"
 
+#define MAX_CUBE_X 16
+#define MAX_CUBE_Y 256
+#define MAX_CUBE_Z 1
+
 quadRenderer::quadRenderer(const int maxVertCount)
 	:m_maxVertexCount(maxVertCount)
 {
@@ -13,6 +17,7 @@ quadRenderer::quadRenderer(const int maxVertCount)
 	layout.add<float>(3);
 	layout.add<float>(2);
 	layout.add<float>(1);
+	layout.add<int>(1);
 	va->addBufferLayout(*vb, layout);
 	Shader = new shader("assets/shader/default.shader");
 	tex = new texture("assets/Textures/testTex.png");
@@ -53,35 +58,35 @@ void quadRenderer::draw(camera* cam)
 	
 	if (terrainGen == false) {
 
-		for (float x = 0; x < 40000; x++)
+		for (float z = 0; z < MAX_CUBE_Z; z++)
 		{
-			for (float y = 0; y < 1; y++)
+			for (float y = 0; y < MAX_CUBE_Y; y++)
 			{
-				for (float z = 0; z < 1; z++)
+				for (float x = 0; x < MAX_CUBE_X; x++)
 				{
-
+					
 					createCube(x, y, z, faces::front);
 
 					
-
 				}
 			}
 		}
-
+		
+		CubeDetection(currentFace);
 		terrainGen = true;
 	}
 	
+
 	
 	
-	//CubeDetection(currentFace);
 	
-	cube quadss[6];
-	std::cout << sizeof(cube::quadFaces.data()) << std::endl;
+	
 	
 	
 
 	glBindBuffer(GL_ARRAY_BUFFER, vb->getRendererID());
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(quadss)   * buffer.size(), &buffer[0]);
+	
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(quad) * buffer.size(), &buffer[0]);
 
 	glDrawElements(GL_TRIANGLES, ib->getMaxIndexCount(), GL_UNSIGNED_INT, nullptr);
 	
@@ -92,26 +97,53 @@ void quadRenderer::createCube(float x, float y, float z, faces currentFace)
 	
 	
 	
-	buffer.push_back(m_cube(x, y, z));
+	buffer.push_back(createQuadFront(x, y, z, 0.0f, 1.0f));
+	buffer.push_back(createQuadUp(x, y, z, 0.0f, 1.0f));
+	buffer.push_back(createQuadDown(x, y, z, 0.0f, 1.0f));
+	buffer.push_back(createQuadBack(x, y, z, 0.0f, 1.0f));
+	buffer.push_back(createQuadLeft(x, y, z, 0.0f, 1.0f));
+	buffer.push_back(createQuadRight(x, y, z, 0.0f, 1.0f));
 
+	
 	
 	
 }
 
 void quadRenderer::CubeDetection(faces currentFace)
 {
-	for (int i = 0; i < 39999; i++) {
-		if (buffer[i].quadFaces[5].vertices[0].position.x == buffer[i+1].quadFaces[4].vertices[0].position.x)
+	for (int i = 0; i < buffer.size() - 9; i++) {
+		if (buffer[i + 4].vertices[0].position.x == buffer[i + 9].vertices[0].position.x)
 		{
 
-			
 
-			
-			
-				buffer[i].quadFaces.erase(buffer[i].quadFaces.begin() + 5);
-				buffer[i+1].quadFaces.erase(buffer[i+1].quadFaces.begin() + 4);
-			
-			
+
+			buffer[i + 4] = quad{};
+			buffer[i + 9] = quad{};
+
+			//buffer.erase(buffer.begin() + i + 9);
+			//buffer.erase(buffer.begin() + i + 4);
+
+
 		}
+		
 	}
+
+	/*for (int i = 0; i < buffer.size() - 7; i++)
+	{
+		if (buffer[i].vertices[0].position.y == buffer[i + 6].vertices[4].position.y)
+		{
+
+
+		buffer[i + 1] = quad{};
+		buffer[i + 7] = quad{};
+
+
+		//buffer.erase(buffer.begin() + i + 7);
+		//buffer.erase(buffer.begin() + i + 1);
+
+
+		}
+	}*/
+
+	
 }

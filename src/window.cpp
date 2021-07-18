@@ -43,7 +43,7 @@ window::~window()
 void window::onStart()
 {
     
-    renderer = new quadRenderer(1000000);
+    renderer = new quadRenderer(2000000);
 
     cam = new camera(getWidth(), getHeight(), glm::radians(45.0f), 0.1f, 1000.0f);
 
@@ -62,12 +62,14 @@ void window::onStart()
 void window::onUpdate()
 {
 
+    
 
     while (!glfwWindowShouldClose(m_window))
     {
         glfwGetCursorPos(m_window, &xpos, &ypos);
 
-       
+        getFPS();
+
 
         float offsetX = xpos- lastX;
         float offsetY = lastY - ypos;
