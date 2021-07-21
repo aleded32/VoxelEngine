@@ -24,7 +24,7 @@ window::window(int width, int height, const char* name)
 
     glfwMakeContextCurrent(m_window);
 
-    glfwSwapInterval(1);
+    //glfwSwapInterval(1);
 
     err = glewInit();
 
@@ -47,7 +47,7 @@ void window::onStart()
 
     cam = new camera(getWidth(), getHeight(), glm::radians(45.0f), 0.1f, 1000.0f);
 
-    cam->setPositon(0, 0, 200.0f);
+    cam->setPositon(0, 100, 200.0f);
 
     cam->setCameraView();
 

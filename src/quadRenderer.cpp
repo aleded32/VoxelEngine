@@ -2,7 +2,7 @@
 
 #define MAX_CUBE_X 16
 #define MAX_CUBE_Y 256
-#define MAX_CUBE_Z 1
+#define MAX_CUBE_Z 16
 
 quadRenderer::quadRenderer(const int maxVertCount)
 	:m_maxVertexCount(maxVertCount)
@@ -64,14 +64,21 @@ void quadRenderer::draw(camera* cam)
 			{
 				for (float x = 0; x < MAX_CUBE_X; x++)
 				{
-					
-					createCube(x, y, z, faces::front);
+						if(y > 68)
+							buffer.push_back(cube{});
+						else
+							createCube(x, y, z, faces::front);
+						
+						
+						
 
 					
 				}
 			}
 		}
 		
+		
+
 		CubeDetection(currentFace);
 		terrainGen = true;
 	}
@@ -86,7 +93,7 @@ void quadRenderer::draw(camera* cam)
 
 	glBindBuffer(GL_ARRAY_BUFFER, vb->getRendererID());
 	
-	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(quad) * buffer.size(), &buffer[0]);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(cube) * buffer.size(), &buffer[0]);
 
 	glDrawElements(GL_TRIANGLES, ib->getMaxIndexCount(), GL_UNSIGNED_INT, nullptr);
 	
@@ -96,13 +103,8 @@ void quadRenderer::createCube(float x, float y, float z, faces currentFace)
 {
 	
 	
-	
-	buffer.push_back(createQuadFront(x, y, z, 0.0f, 1.0f));
-	buffer.push_back(createQuadUp(x, y, z, 0.0f, 1.0f));
-	buffer.push_back(createQuadDown(x, y, z, 0.0f, 1.0f));
-	buffer.push_back(createQuadBack(x, y, z, 0.0f, 1.0f));
-	buffer.push_back(createQuadLeft(x, y, z, 0.0f, 1.0f));
-	buffer.push_back(createQuadRight(x, y, z, 0.0f, 1.0f));
+	buffer.push_back(m_cube(x, y, z));
+
 
 	
 	
@@ -111,39 +113,48 @@ void quadRenderer::createCube(float x, float y, float z, faces currentFace)
 
 void quadRenderer::CubeDetection(faces currentFace)
 {
-	for (int i = 0; i < buffer.size() - 9; i++) {
-		if (buffer[i + 4].vertices[0].position.x == buffer[i + 9].vertices[0].position.x)
+
+	for (int i = 0; i < buffer.size() - 1; i++) 
+	{
+		if (buffer[i].quadFaces[0].vertices[1].texCoord != cube{}.quadFaces[0].vertices[1].texCoord) 
 		{
+			if (buffer[i].quadFaces[(int)faces::right].vertices[0].position.x == buffer[i + 1].quadFaces[(int)faces::left].vertices[1].position.x)
+			{
 
-
-
-			buffer[i + 4] = quad{};
-			buffer[i + 9] = quad{};
-
-			//buffer.erase(buffer.begin() + i + 9);
-			//buffer.erase(buffer.begin() + i + 4);
-
-
+				buffer[i].quadFaces[(int)faces::right] = cube{}.quadFaces[(int)faces::right];
+				buffer[i + 1].quadFaces[(int)faces::left] = cube{}.quadFaces[(int)faces::left];
+			}
 		}
 		
 	}
 
-	/*for (int i = 0; i < buffer.size() - 7; i++)
+	for (int i = 0; i < buffer.size() - MAX_CUBE_X; i++)
 	{
-		if (buffer[i].vertices[0].position.y == buffer[i + 6].vertices[4].position.y)
+		if (buffer[i].quadFaces[0].vertices[1].texCoord != cube{}.quadFaces[0].vertices[1].texCoord)
 		{
-
-
-		buffer[i + 1] = quad{};
-		buffer[i + 7] = quad{};
-
-
-		//buffer.erase(buffer.begin() + i + 7);
-		//buffer.erase(buffer.begin() + i + 1);
-
-
+			if (buffer[i].quadFaces[(int)faces::down].vertices[3].position.y == buffer[i + MAX_CUBE_X].quadFaces[(int)faces::up].vertices[0].position.y)
+			{
+				buffer[i].quadFaces[(int)faces::down] = cube{}.quadFaces[(int)faces::down];
+				buffer[i + MAX_CUBE_X].quadFaces[(int)faces::up] = cube{}.quadFaces[(int)faces::up];
+			}
 		}
-	}*/
+	}
 
+	for (int i = 0; i < buffer.size() - (MAX_CUBE_Y * MAX_CUBE_X); i++)
+	{
+		if (buffer[i].quadFaces[3].vertices[1].texCoord != cube{}.quadFaces[3].vertices[1].texCoord)
+		{
+			if (buffer[i].quadFaces[(int)faces::back].vertices[0].position.z == buffer[i + (MAX_CUBE_Y * MAX_CUBE_X)].quadFaces[(int)faces::front].vertices[0].position.z)
+			{
+				buffer[i].quadFaces[(int)faces::back] = cube{}.quadFaces[(int)faces::back];
+				buffer[i + (MAX_CUBE_Y * MAX_CUBE_X)].quadFaces[(int)faces::front] = cube{}.quadFaces[(int)faces::front];
+			}
+		}
+
+		
+
+	}
+
+	
 	
 }

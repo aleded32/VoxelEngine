@@ -26,13 +26,10 @@ struct quad
 
 struct cube 
 {
-	std::vector<quad> quadFaces;
+	quad quadFaces[6];
 };
 
-struct dummy 
-{
-	quad faces[6];
-};
+
 
 class quadRenderer 
 {
@@ -224,12 +221,12 @@ public:
 		cube targetCube;
 		
 		
-			targetCube.quadFaces.push_back(createQuadFront(x, y, z, 0.0f, 1.0f));
-			targetCube.quadFaces.push_back(createQuadUp(x, y, z, 0.0f, 1.0f));
-			targetCube.quadFaces.push_back(createQuadDown(x, y, z, 0.0f, 1.0f));
-			targetCube.quadFaces.push_back(createQuadBack(x, y, z, 0.0f, 1.0f));
-			targetCube.quadFaces.push_back(createQuadLeft(x, y, z, 0.0f, 1.0f));
-			targetCube.quadFaces.push_back(createQuadRight(x, y, z, 0.0f, 1.0f));
+			targetCube.quadFaces[0] = createQuadFront(x, y, z, 0.0f, 1.0f);
+			targetCube.quadFaces[1] = createQuadUp(x, y, z, 0.0f, 1.0f);
+			targetCube.quadFaces[2] = createQuadDown(x, y, z, 0.0f, 1.0f);
+			targetCube.quadFaces[3] = createQuadBack(x, y, z, 0.0f, 1.0f);
+			targetCube.quadFaces[4] = createQuadLeft(x, y, z, 0.0f, 1.0f);
+			targetCube.quadFaces[5] = createQuadRight(x, y, z, 0.0f, 1.0f);
 		
 
 		return targetCube;
@@ -244,7 +241,7 @@ private:
 	
 	
 	const int m_maxVertexCount;
-	std::vector<quad> buffer;
+	std::vector<cube> buffer;
 	bool terrainGen = false;
 
 	//normal variables for application use
