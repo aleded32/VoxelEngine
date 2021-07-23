@@ -37,17 +37,19 @@ window::window(int width, int height, const char* name)
 
 window::~window()
 {
-    
+    delete cam;
+    delete chunkGenerator;
 }
 
 void window::onStart()
 {
+    chunkGenerator = new chunkGen(16);
     
-    renderer = new quadRenderer(2000000);
 
     cam = new camera(getWidth(), getHeight(), glm::radians(45.0f), 0.1f, 1000.0f);
 
-    cam->setPositon(0, 100, 200.0f);
+    camPosition = glm::vec3(0.0f, 67.0f, 0.0f);
+    cam->setPositon(camPosition);
 
     cam->setCameraView();
 
@@ -70,6 +72,7 @@ void window::onUpdate()
 
         getFPS();
 
+        glfwSwapInterval(1);
 
         float offsetX = xpos- lastX;
         float offsetY = lastY - ypos;
@@ -111,6 +114,8 @@ void window::onUpdate()
         //glm cross works out the resulting cross product vector between the front facing vector and the up facing vector resulting the correct vector for left and right
        
         cam->setPositon(camPosition);
+      
+        chunkGenerator->GenChunks();
         
         onRender();
 
@@ -122,7 +127,7 @@ void window::onUpdate()
 
    
 
-
+    
 
     glfwTerminate();
     
@@ -135,7 +140,7 @@ void window::onRender()
 
     glClearColor(0.1f, 0.5f, 0.9f, 1.0f);
 
-    renderer->draw(cam);
+    chunkGenerator->drawChunks(*cam);
 
    
 }

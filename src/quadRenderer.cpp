@@ -3,6 +3,7 @@
 #define MAX_CUBE_X 16
 #define MAX_CUBE_Y 256
 #define MAX_CUBE_Z 16
+#define BASE_HEIGHT_Y 64
 
 quadRenderer::quadRenderer(const int maxVertCount)
 	:m_maxVertexCount(maxVertCount)
@@ -17,7 +18,6 @@ quadRenderer::quadRenderer(const int maxVertCount)
 	layout.add<float>(3);
 	layout.add<float>(2);
 	layout.add<float>(1);
-	layout.add<int>(1);
 	va->addBufferLayout(*vb, layout);
 	Shader = new shader("assets/shader/default.shader");
 	tex = new texture("assets/Textures/testTex.png");
@@ -51,7 +51,7 @@ void quadRenderer::draw(camera* cam)
 	va->bind();
 	Shader->bind();
 
-	Shader->setUniform1i("u_texture", 0);
+	//Shader->setUniform1i("u_texture", 0);
 	Shader->setUniformMat4("u_projection", cam->getProjection());
 	Shader->setUniformMat4("u_view", cam->getView());
 
@@ -64,10 +64,10 @@ void quadRenderer::draw(camera* cam)
 			{
 				for (float x = 0; x < MAX_CUBE_X; x++)
 				{
-						if(y > 68)
-							buffer.push_back(cube{});
+						if(y > BASE_HEIGHT_Y || y < BASE_HEIGHT_Y)
+							buffer.push_back(cube{});							
 						else
-							createCube(x, y, z, faces::front);
+							createCube(x, y, z);
 						
 						
 						
@@ -77,9 +77,9 @@ void quadRenderer::draw(camera* cam)
 			}
 		}
 		
-		
+		std::cout << buffer.size() << std::endl;
 
-		CubeDetection(currentFace);
+		CubeDetection();
 		terrainGen = true;
 	}
 	
@@ -99,7 +99,7 @@ void quadRenderer::draw(camera* cam)
 	
 }
 
-void quadRenderer::createCube(float x, float y, float z, faces currentFace)
+void quadRenderer::createCube(float x, float y, float z)
 {
 	
 	
@@ -111,7 +111,7 @@ void quadRenderer::createCube(float x, float y, float z, faces currentFace)
 	
 }
 
-void quadRenderer::CubeDetection(faces currentFace)
+void quadRenderer::CubeDetection()
 {
 
 	for (int i = 0; i < buffer.size() - 1; i++) 
@@ -140,12 +140,14 @@ void quadRenderer::CubeDetection(faces currentFace)
 		}
 	}
 
-	for (int i = 0; i < buffer.size() - (MAX_CUBE_Y * MAX_CUBE_X); i++)
+	for (int i = 0; i < buffer.size() - (MAX_CUBE_X * MAX_CUBE_Y); i++)
 	{
 		if (buffer[i].quadFaces[3].vertices[1].texCoord != cube{}.quadFaces[3].vertices[1].texCoord)
 		{
+			
 			if (buffer[i].quadFaces[(int)faces::back].vertices[0].position.z == buffer[i + (MAX_CUBE_Y * MAX_CUBE_X)].quadFaces[(int)faces::front].vertices[0].position.z)
 			{
+				buffer[i].quadFaces[(int)faces::back].vertices[0].texCoord = glm::vec2(5.0f, 1.0f);
 				buffer[i].quadFaces[(int)faces::back] = cube{}.quadFaces[(int)faces::back];
 				buffer[i + (MAX_CUBE_Y * MAX_CUBE_X)].quadFaces[(int)faces::front] = cube{}.quadFaces[(int)faces::front];
 			}

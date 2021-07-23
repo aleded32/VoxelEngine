@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include "quadRenderer.h"
-
+#include "chunkGenerator.h"
 
 
 class window
@@ -27,10 +27,10 @@ private:
     int m_width, m_height;
     const char* m_name;
     GLenum err;
-
+    chunkGen* chunkGenerator;
 
     camera* cam;
-    quadRenderer* renderer;
+    
 
     double xpos, ypos;
     glm::vec3 camPosition;

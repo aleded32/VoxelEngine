@@ -8,14 +8,13 @@
 #include "vertexBufferLayout.h"
 #include "texture.h"
 #include "Camera.h"
-#include <array>
 
 struct vertex 
 {
 	glm::vec3 position;
 	glm::vec2 texCoord;
 	float texID;
-	int active = 0;
+	
 
 };
 
@@ -46,19 +45,19 @@ public:
 		targetQuad.vertices[0].position = {x,y,z};
 		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
 		targetQuad.vertices[0].texID = textureID;
-		targetQuad.vertices[0].active = true;
+		
 
 		targetQuad.vertices[1].position = { x + size,y,z };
 		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
-		targetQuad.vertices[1].active = true;
+		targetQuad.vertices[0].texID = textureID;
 
 		targetQuad.vertices[2].position = { x + size,y + size,z };
 		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
-		targetQuad.vertices[2].active = true;
+		targetQuad.vertices[0].texID = textureID;
 
 		targetQuad.vertices[3].position = { x,y + size,z };
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
-		targetQuad.vertices[3].active = true;
+		targetQuad.vertices[0].texID = textureID;
 
 	
 		return targetQuad;
@@ -71,23 +70,23 @@ public:
 		targetQuad.vertices[0].position = { x,y,z};
 		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
 		targetQuad.vertices[0].texID = textureID;
-		targetQuad.vertices[0].active = true;
+		
 
 
 		targetQuad.vertices[1].position = { x,y,z + size };
 		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
 		targetQuad.vertices[1].texID = textureID;
-		targetQuad.vertices[1].active = true;
+		
 
 		targetQuad.vertices[2].position = { x + size,y,z + size};
 		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
 		targetQuad.vertices[2].texID = textureID;
-		targetQuad.vertices[2].active = true;
+		
 
 		targetQuad.vertices[3].position = { x + size,y,z };
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		targetQuad.vertices[3].texID = textureID;
-		targetQuad.vertices[3].active = true;
+		
 
 
 		return targetQuad;
@@ -100,25 +99,25 @@ public:
 		targetQuad.vertices[0].position = { x,y + size,z };
 		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
 		targetQuad.vertices[0].texID = textureID;
-		targetQuad.vertices[0].active = true;
+		
 		
 
 		targetQuad.vertices[1].position = { x,y + size,z + size };
 		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
 		targetQuad.vertices[1].texID = textureID;
-		targetQuad.vertices[1].active = true;
+		
 		
 
 		targetQuad.vertices[2].position = { x + size,y + size,z + size };
 		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
 		targetQuad.vertices[2].texID = textureID;
-		targetQuad.vertices[2].active = true;
+		
 		
 
 		targetQuad.vertices[3].position = { x + size,y + size,z };
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		targetQuad.vertices[3].texID = textureID;
-		targetQuad.vertices[3].active = true;
+		
 		
 
 		return targetQuad;
@@ -131,23 +130,23 @@ public:
 		targetQuad.vertices[0].position = { x,y,z + size};
 		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
 		targetQuad.vertices[0].texID = textureID;
-		targetQuad.vertices[0].active = true;
+		
 		
 
 		targetQuad.vertices[1].position = { x + size,y,z + size};
 		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
 		targetQuad.vertices[1].texID = textureID;
-		targetQuad.vertices[1].active = true;
+		
 
 		targetQuad.vertices[2].position = { x + size,y + size,z + size};
 		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
 		targetQuad.vertices[2].texID = textureID;
-		targetQuad.vertices[2].active = true;
+		
 
 		targetQuad.vertices[3].position = { x,y + size,z + size};
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		targetQuad.vertices[3].texID = textureID;
-		targetQuad.vertices[3].active = true;
+		
 
 		return targetQuad;
 
@@ -159,24 +158,24 @@ public:
 		targetQuad.vertices[0].position = { x,y,z };
 		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
 		targetQuad.vertices[0].texID = textureID;
-		targetQuad.vertices[0].active = true;
+		
 		
 
 		targetQuad.vertices[1].position = { x,y,z + size };
 		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
 		targetQuad.vertices[1].texID = textureID;
-		targetQuad.vertices[1].active = true;
+		
 
 		targetQuad.vertices[2].position = { x,y + size,z + size };
 		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
 		targetQuad.vertices[2].texID = textureID;
-		targetQuad.vertices[2].active = true;
+		
 		
 
 		targetQuad.vertices[3].position = { x,y + size,z };
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		targetQuad.vertices[3].texID = textureID;
-		targetQuad.vertices[3].active = true;
+		
 		
 
 		return targetQuad;
@@ -189,25 +188,25 @@ public:
 		targetQuad.vertices[0].position = { x + size,y,z };
 		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
 		targetQuad.vertices[0].texID = textureID;
-		targetQuad.vertices[0].active = true;
+		
 		
 
 		targetQuad.vertices[1].position = { x + size,y,z + size };
 		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
 		targetQuad.vertices[1].texID = textureID;
-		targetQuad.vertices[1].active = true;
+		
 		
 
 		targetQuad.vertices[2].position = { x + size,y + size,z + size };
 		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
 		targetQuad.vertices[2].texID = textureID;
-		targetQuad.vertices[2].active = true;
+		
 		
 
 		targetQuad.vertices[3].position = { x + size,y + size,z };
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		targetQuad.vertices[3].texID = textureID;
-		targetQuad.vertices[3].active = true;
+		
 		
 
 		return targetQuad;
@@ -232,19 +231,11 @@ public:
 		return targetCube;
 	}
 
-	
-	
+	void createCube(float x, float y, float z);
 
-private:
-
-	
-	
-	
-	const int m_maxVertexCount;
+	void CubeDetection();
 	std::vector<cube> buffer;
-	bool terrainGen = false;
 
-	//normal variables for application use
 	vertexArray* va;
 	vertexBuffer* vb;
 	vertexBufferLayout layout;
@@ -252,12 +243,22 @@ private:
 	shader* Shader;
 	texture* tex;
 
+private:
+
+	
+	
+	
+	const int m_maxVertexCount;
+	
+	bool terrainGen = false;
+
+	//normal variables for application use
+
+
 	enum class faces {front,up,down,back,left,right};
 
 	faces currentFace = faces::front;
 
-	void createCube(float x, float y, float z, faces currentFace);
-
-	void CubeDetection(faces currentFace);
+	
 
 };

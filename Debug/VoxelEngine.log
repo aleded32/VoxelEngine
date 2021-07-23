@@ -1,6 +1,5 @@
-﻿  quadRenderer.cpp
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(117,20): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(131,20): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\VoxelEngine\src\quadRenderer.cpp(143,20): warning C4018: '<': signed/unsigned mismatch
+﻿  chunkGenerator.cpp
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(35,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(39,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 D:\GitHub\VoxelEngine\src\shader.h(65): warning C4715: 'shader::getUniformLocation': not all control paths return a value
   VoxelEngine.vcxproj -> D:\GitHub\VoxelEngine\Debug\VoxelEngine.exe
