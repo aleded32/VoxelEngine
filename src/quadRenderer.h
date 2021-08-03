@@ -243,6 +243,10 @@ public:
 	shader* Shader;
 	texture* tex;
 
+	enum class faces { front, up, down, back, left, right };
+
+	faces currentFace = faces::front;
+
 private:
 
 	
@@ -255,9 +259,7 @@ private:
 	//normal variables for application use
 
 
-	enum class faces {front,up,down,back,left,right};
-
-	faces currentFace = faces::front;
+	
 
 	
 

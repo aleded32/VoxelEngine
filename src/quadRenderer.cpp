@@ -1,9 +1,9 @@
 #include "quadRenderer.h"
 
 #define MAX_CUBE_X 16
-#define MAX_CUBE_Y 256
+#define MAX_CUBE_Y 32
 #define MAX_CUBE_Z 16
-#define BASE_HEIGHT_Y 64
+#define BASE_HEIGHT_Y 32
 
 quadRenderer::quadRenderer(const int maxVertCount)
 	:m_maxVertexCount(maxVertCount)
@@ -79,7 +79,7 @@ void quadRenderer::draw(camera* cam)
 		
 		std::cout << buffer.size() << std::endl;
 
-		CubeDetection();
+		
 		terrainGen = true;
 	}
 	
