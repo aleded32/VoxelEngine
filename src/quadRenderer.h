@@ -26,6 +26,7 @@ struct quad
 struct cube 
 {
 	quad quadFaces[6];
+	const char* cubeType = "air";
 };
 
 
@@ -215,7 +216,7 @@ public:
 
 	
 
-	cube m_cube(float x, float y, float z) 
+	cube m_cube(float x, float y, float z, const char* blockType) 
 	{
 		cube targetCube;
 		
@@ -226,6 +227,7 @@ public:
 			targetCube.quadFaces[3] = createQuadBack(x, y, z, 0.0f, 1.0f);
 			targetCube.quadFaces[4] = createQuadLeft(x, y, z, 0.0f, 1.0f);
 			targetCube.quadFaces[5] = createQuadRight(x, y, z, 0.0f, 1.0f);
+			targetCube.cubeType = "land";
 		
 
 		return targetCube;

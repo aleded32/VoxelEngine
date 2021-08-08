@@ -1,5 +1,7 @@
 #include "chunkGenerator.h"
 
+
+
 chunkGen::chunkGen(int maxChunksizeXZ) :
 	quadRen(new quadRenderer(4000000)), m_maxChunkSizeXZ(maxChunksizeXZ)
 {
@@ -86,42 +88,50 @@ void chunkGen::cullblocks(chunk &targetChunk,int maxX, int maxZ)
 chunk chunkGen::GenChunk(int chunkOffsetX, int chunkOffsetZ, int maxChunkX, int maxChunkZ)
 {
 	chunk baseChunk;
-	
-		for (float z = chunkOffsetZ; z < maxChunkZ; z++)
+
+	for (float z = chunkOffsetZ; z < maxChunkZ; z++)
+	{
+		for (float y = 0; y < MAX_CUBE_Y; y++)
 		{
-			for (float y = 0; y < MAX_CUBE_Y; y++)
+
+			for (float x = chunkOffsetX; x < maxChunkX; x++)
 			{
 
-				for (float x = chunkOffsetX; x < maxChunkX; x++)
-				{
-
-					
-
-					
-					if (y > BASE_HEIGHT_Y) 
-						quadRen->buffer.push_back(cube{});
-					else
-						quadRen->createCube(x, y, z);
-					
-					
-					
 
 
-				}
+
+				if (y > BASE_HEIGHT_Y)
+					quadRen->buffer.push_back(cube{});
+				else
+					quadRen->createCube(x, y, z);
+
+
+
+
+
 			}
 		}
+	}
+
+
+	baseChunk.blocks = quadRen->buffer;
+
+	   
+
+	baseChunk.blocks.erase(std::remove(baseChunk.blocks.begin(), baseChunk.blocks.end(), "air"), baseChunk.blocks.end());
+	
 
 		
-		baseChunk.blocks = quadRen->buffer;
+		
+		//quadRen->buffer.clear();
 
+
+		//cullblocks(baseChunk, maxChunkX, maxChunkZ);
+		
 		
 
+		std::cout << baseChunk.blocks.size() << std::endl;
 		
-		quadRen->buffer.clear();
-
-
-		cullblocks(baseChunk, maxChunkX, maxChunkZ);
-
 		
 		for (auto i : m_chunkCache)
 		{

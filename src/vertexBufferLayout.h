@@ -34,6 +34,13 @@ public:
 		m_stride += count * sizeof(int);
 	}
 
+	template<>
+	void add<short>(unsigned int count)
+	{
+		m_elements.push_back({ count, GL_SHORT,GL_FALSE });
+		m_stride += count * sizeof(short);
+	}
+
 	inline const auto getElements() const& { return m_elements; }
 	inline const uint32_t getStride() const& { return m_stride; }
 

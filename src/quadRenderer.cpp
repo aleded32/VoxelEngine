@@ -103,7 +103,7 @@ void quadRenderer::createCube(float x, float y, float z)
 {
 	
 	
-	buffer.push_back(m_cube(x, y, z));
+	buffer.push_back(m_cube(x, y, z, "land"));
 
 
 	

@@ -4,11 +4,11 @@ D:\GitHub\VoxelEngine\src\window.h(39,28): warning C4244: 'initializing': conver
 D:\GitHub\VoxelEngine\src\window.h(40,33): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\GitHub\VoxelEngine\src\window.h(45,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   chunkGenerator.cpp
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(41,20): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(55,20): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(67,20): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(90,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(95,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(47,20): warning C4018: '<': signed/unsigned mismatch
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(61,20): warning C4018: '<': signed/unsigned mismatch
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(73,20): warning C4018: '<': signed/unsigned mismatch
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(96,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(101,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   window.cpp
 D:\GitHub\VoxelEngine\src\window.h(38,27): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 D:\GitHub\VoxelEngine\src\window.h(39,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
