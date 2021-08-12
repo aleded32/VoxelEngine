@@ -14,7 +14,7 @@ struct vertex
 	glm::vec3 position;
 	glm::vec2 texCoord;
 	float texID;
-	
+	int faceType = 0;
 
 };
 
@@ -26,7 +26,6 @@ struct quad
 struct cube 
 {
 	quad quadFaces[6];
-	const char* cubeType = "air";
 };
 
 
@@ -60,6 +59,7 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		targetQuad.vertices[0].texID = textureID;
 
+		targetQuad.vertices->faceType = 1;
 	
 		return targetQuad;
 
@@ -88,7 +88,7 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		targetQuad.vertices[3].texID = textureID;
 		
-
+		targetQuad.vertices->faceType = 1;
 
 		return targetQuad;
 
@@ -119,7 +119,7 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		targetQuad.vertices[3].texID = textureID;
 		
-		
+		targetQuad.vertices->faceType = 1;
 
 		return targetQuad;
 
@@ -148,6 +148,7 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		targetQuad.vertices[3].texID = textureID;
 		
+		targetQuad.vertices->faceType = 1;
 
 		return targetQuad;
 
@@ -177,7 +178,7 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		targetQuad.vertices[3].texID = textureID;
 		
-		
+		targetQuad.vertices->faceType = 1;
 
 		return targetQuad;
 
@@ -208,7 +209,7 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		targetQuad.vertices[3].texID = textureID;
 		
-		
+		targetQuad.vertices->faceType = 1;
 
 		return targetQuad;
 
@@ -227,7 +228,6 @@ public:
 			targetCube.quadFaces[3] = createQuadBack(x, y, z, 0.0f, 1.0f);
 			targetCube.quadFaces[4] = createQuadLeft(x, y, z, 0.0f, 1.0f);
 			targetCube.quadFaces[5] = createQuadRight(x, y, z, 0.0f, 1.0f);
-			targetCube.cubeType = "land";
 		
 
 		return targetCube;

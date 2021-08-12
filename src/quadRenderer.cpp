@@ -18,6 +18,7 @@ quadRenderer::quadRenderer(const int maxVertCount)
 	layout.add<float>(3);
 	layout.add<float>(2);
 	layout.add<float>(1);
+	layout.add<int>(1);
 	va->addBufferLayout(*vb, layout);
 	Shader = new shader("assets/shader/default.shader");
 	tex = new texture("assets/Textures/testTex.png");

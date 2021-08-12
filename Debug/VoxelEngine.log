@@ -4,11 +4,11 @@ D:\GitHub\VoxelEngine\src\window.h(39,28): warning C4244: 'initializing': conver
 D:\GitHub\VoxelEngine\src\window.h(40,33): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\GitHub\VoxelEngine\src\window.h(45,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   chunkGenerator.cpp
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(47,20): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(61,20): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(73,20): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(96,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(101,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(43,20): warning C4018: '<': signed/unsigned mismatch
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(57,20): warning C4018: '<': signed/unsigned mismatch
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(69,20): warning C4018: '<': signed/unsigned mismatch
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(92,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(97,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   window.cpp
 D:\GitHub\VoxelEngine\src\window.h(38,27): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 D:\GitHub\VoxelEngine\src\window.h(39,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
@@ -22,5 +22,4 @@ D:\GitHub\VoxelEngine\src\window.cpp(85,17): warning C4244: '=': conversion from
 D:\GitHub\VoxelEngine\src\window.cpp(86,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   Generating Code...
 D:\GitHub\VoxelEngine\src\shader.h(65): warning C4715: 'shader::getUniformLocation': not all control paths return a value
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   VoxelEngine.vcxproj -> D:\GitHub\VoxelEngine\Debug\VoxelEngine.exe

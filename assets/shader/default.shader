@@ -4,6 +4,7 @@
 layout(location = 0)in vec3 position;
 layout(location = 1)in vec2 texCoord;
 layout(location = 2)in float texID;
+layout(location = 3)in int faceType;
 
 out vec2 v_texCoord;
 
