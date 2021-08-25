@@ -10,7 +10,7 @@
 
 struct chunk
 {
-	std::vector<cube> blocks;
+	std::vector<quad> blocks;
 };
 
 class chunkGen
@@ -42,22 +42,19 @@ private:
 
 	faces currentFace = faces::front;
 
-	cube targetCube;
+	
 
-	void m_cube(float x, float y, float z, quadRenderer &quadrenderer, std::vector<cube>& blocks)
+	void m_cube(float x, float y, float z, quadRenderer &quadrenderer, std::vector<quad>& blocks)
 	{
 		
 
+		blocks.push_back(quadrenderer.createQuadRight(x, y, z, 0.0f, 1.0f));
+		blocks.push_back(quadrenderer.createQuadLeft(x, y, z, 0.0f, 1.0f));
+		blocks.push_back(quadrenderer.createQuadBack(x, y, z, 0.0f, 1.0f));
+		blocks.push_back(quadrenderer.createQuadDown(x, y, z, 0.0f, 1.0f));
+		blocks.push_back(quadrenderer.createQuadUp(x, y, z, 0.0f, 1.0f));
+		blocks.push_back(quadrenderer.createQuadFront(x, y, z, 0.0f, 1.0f));
 
-		targetCube.quadFaces[0] = quadrenderer.createQuadFront(x, y, z, 0.0f, 1.0f);
-		targetCube.quadFaces[1] = quadrenderer.createQuadUp(x, y, z, 0.0f, 1.0f);
-		targetCube.quadFaces[2] = quadrenderer.createQuadDown(x, y, z, 0.0f, 1.0f);
-		targetCube.quadFaces[3] = quadrenderer.createQuadBack(x, y, z, 0.0f, 1.0f);
-		targetCube.quadFaces[4] = quadrenderer.createQuadLeft(x, y, z, 0.0f, 1.0f);
-		targetCube.quadFaces[5] = quadrenderer.createQuadRight(x, y, z, 0.0f, 1.0f);
-
-
-		blocks.push_back(targetCube);
 	}
 	
 

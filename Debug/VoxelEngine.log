@@ -1,7 +1,4 @@
 ﻿  chunkGenerator.cpp
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(43,20): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(56,20): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(68,20): warning C4018: '<': signed/unsigned mismatch
 D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(92,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(97,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 D:\GitHub\VoxelEngine\src\shader.h(65): warning C4715: 'shader::getUniformLocation': not all control paths return a value

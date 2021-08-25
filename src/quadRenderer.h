@@ -1,6 +1,7 @@
 #pragma once
 #include "vendor/glm/glm.hpp"
 #include <iostream>
+#include <vector>
 #include "vertexBuffer.h"
 #include "indexBuffer.h"
 #include "shader.h"
@@ -22,10 +23,7 @@ struct quad
 	vertex vertices[4];
 };
 
-struct cube 
-{
-	quad quadFaces[6];
-};
+
 
 
 

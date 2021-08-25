@@ -17,6 +17,7 @@ void chunkGen::drawChunks(camera& cam)
 {
 	quadRen->ib->bind();
 	quadRen->va->bind();
+	quadRen->vb->bind();
 	quadRen->Shader->bind();
 
 	quadRen->Shader->setUniform1i("u_texture", 0);
@@ -25,10 +26,9 @@ void chunkGen::drawChunks(camera& cam)
 
 	
 
-	quadRen->vb->bind();
-
 	
-		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(cube) * m_rendererdChunks[0].blocks.size(), &m_rendererdChunks[0].blocks.front());
+	
+		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(quad)  * m_rendererdChunks[0].blocks.size(), &m_rendererdChunks[0].blocks.front());
 		glDrawElements(GL_TRIANGLES, quadRen->ib->getMaxIndexCount(), GL_UNSIGNED_INT, nullptr);
 	
 
@@ -38,47 +38,22 @@ void chunkGen::drawChunks(camera& cam)
 
 
 
-void chunkGen::cullblocks(chunk &targetChunk,int maxX, int maxZ)
+void chunkGen::cullblocks(chunk& targetChunk, int maxX, int maxZ)
 {
 	for (int i = 0; i < targetChunk.blocks.size() - 1; i++)
 	{
-		if (targetChunk.blocks[i].quadFaces[0].vertices[1].texCoord != cube{}.quadFaces[0].vertices[1].texCoord)
-		{
-			if (targetChunk.blocks[i].quadFaces[(int)faces::right].vertices[0].position.x == targetChunk.blocks[i + 1].quadFaces[(int)faces::left].vertices[1].position.x)
-			{
-				targetChunk.blocks[i].quadFaces[(int)faces::right] = cube{}.quadFaces[(int)faces::right];
-				targetChunk.blocks[i+1].quadFaces[(int)faces::left] = cube{}.quadFaces[(int)faces::left];
-			}
-		}
+		
 
 	}
 
 	for (int i = 0; i < targetChunk.blocks.size() - maxX; i++)
 	{
-		if (targetChunk.blocks[i].quadFaces[0].vertices[1].texCoord != cube{}.quadFaces[0].vertices[1].texCoord)
-		{
-			if (targetChunk.blocks[i].quadFaces[(int)faces::down].vertices[3].position.y == targetChunk.blocks[i + maxX].quadFaces[(int)faces::up].vertices[0].position.y)
-			{
-				targetChunk.blocks[i].quadFaces[(int)faces::down] = cube{}.quadFaces[(int)faces::down];
-				targetChunk.blocks[i + maxX].quadFaces[(int)faces::up] = cube{}.quadFaces[(int)faces::up];
-			}
-		}
+		
 	}
 
 	for (int i = 0; i < targetChunk.blocks.size() - (maxX * MAX_CUBE_Y); i++)
 	{
-		if (targetChunk.blocks[i].quadFaces[3].vertices[1].texCoord != cube{}.quadFaces[3].vertices[1].texCoord)
-		{
-
-			if (targetChunk.blocks[i].quadFaces[(int)faces::back].vertices[0].position.z == targetChunk.blocks[i + ((BASE_HEIGHT_Y+1) * maxX)].quadFaces[(int)faces::front].vertices[0].position.z)
-			{
-				
-				targetChunk.blocks[i].quadFaces[(int)faces::back] = cube{}.quadFaces[(int)faces::back];
-				targetChunk.blocks[i + ((BASE_HEIGHT_Y+1) * maxX)].quadFaces[(int)faces::front] = cube{}.quadFaces[(int)faces::front];
-			}
-		}
-
-
+		
 
 	}
 
@@ -101,7 +76,8 @@ chunk chunkGen::GenChunk(int chunkOffsetX, int chunkOffsetZ, int maxChunkX, int 
 
 
 				if (y > BASE_HEIGHT_Y)
-					baseChunk.blocks.push_back(cube{});
+					for(int i = 0; i < 6; i++)
+						baseChunk.blocks.push_back(quad{});
 				else
 					m_cube(x, y, z, *quadRen, baseChunk.blocks);
 
@@ -115,8 +91,8 @@ chunk chunkGen::GenChunk(int chunkOffsetX, int chunkOffsetZ, int maxChunkX, int 
 
 
 	
-	baseChunk.blocks.erase(std::remove_if(baseChunk.blocks.begin(), baseChunk.blocks.end(), [&](cube const& block) {return block.quadFaces->vertices->faceType == 0; }), baseChunk.blocks.end());
-	cullblocks(baseChunk, maxChunkX, maxChunkZ);
+	baseChunk.blocks.erase(std::remove_if(baseChunk.blocks.begin(), baseChunk.blocks.end(), [&](quad const& block) {return block.vertices->faceType == 0; }), baseChunk.blocks.end());
+	//cullblocks(baseChunk, maxChunkX, maxChunkZ);
 
 	
 		
