@@ -3,7 +3,7 @@
 
 
 chunkGen::chunkGen(int maxChunksizeXZ) :
-	quadRen(new quadRenderer(1600000)), m_maxChunkSizeXZ(maxChunksizeXZ)
+	quadRen(new quadRenderer(4000000)), m_maxChunkSizeXZ(maxChunksizeXZ)
 {
 
 }
@@ -25,7 +25,7 @@ void chunkGen::drawChunks(camera& cam)
 
 	
 
-	glBindBuffer(GL_ARRAY_BUFFER, quadRen->vb->getRendererID());
+	quadRen->vb->bind();
 
 	
 		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(cube) * m_rendererdChunks[0].blocks.size(), &m_rendererdChunks[0].blocks.front());
@@ -46,9 +46,8 @@ void chunkGen::cullblocks(chunk &targetChunk,int maxX, int maxZ)
 		{
 			if (targetChunk.blocks[i].quadFaces[(int)faces::right].vertices[0].position.x == targetChunk.blocks[i + 1].quadFaces[(int)faces::left].vertices[1].position.x)
 			{
-
 				targetChunk.blocks[i].quadFaces[(int)faces::right] = cube{}.quadFaces[(int)faces::right];
-				targetChunk.blocks[i + 1].quadFaces[(int)faces::left] = cube{}.quadFaces[(int)faces::left];
+				targetChunk.blocks[i+1].quadFaces[(int)faces::left] = cube{}.quadFaces[(int)faces::left];
 			}
 		}
 
@@ -83,6 +82,7 @@ void chunkGen::cullblocks(chunk &targetChunk,int maxX, int maxZ)
 
 	}
 
+
 }
 
 chunk chunkGen::GenChunk(int chunkOffsetX, int chunkOffsetZ, int maxChunkX, int maxChunkZ)
@@ -101,11 +101,11 @@ chunk chunkGen::GenChunk(int chunkOffsetX, int chunkOffsetZ, int maxChunkX, int 
 
 
 				if (y > BASE_HEIGHT_Y)
-					quadRen->buffer.push_back(cube{});
+					baseChunk.blocks.push_back(cube{});
 				else
-					quadRen->createCube(x, y, z);
+					m_cube(x, y, z, *quadRen, baseChunk.blocks);
 
-
+				
 
 
 
@@ -114,24 +114,23 @@ chunk chunkGen::GenChunk(int chunkOffsetX, int chunkOffsetZ, int maxChunkX, int 
 	}
 
 
-	baseChunk.blocks = quadRen->buffer;
-
 	
 	baseChunk.blocks.erase(std::remove_if(baseChunk.blocks.begin(), baseChunk.blocks.end(), [&](cube const& block) {return block.quadFaces->vertices->faceType == 0; }), baseChunk.blocks.end());
 	cullblocks(baseChunk, maxChunkX, maxChunkZ);
 
-	std::cout << baseChunk.blocks.size() << std::endl;
+	
 		
+
 	
 		
 		
-		for (auto i : m_chunkCache)
+		/*for (auto i : m_chunkCache)
 		{
 			if (i.second.blocks[0].quadFaces[0].vertices[0].position.x != baseChunk.blocks[0].quadFaces[0].vertices[0].position.x)
 			{
 				i.second = baseChunk;
 			}
-		}
+		}*/
 
 		
 	

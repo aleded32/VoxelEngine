@@ -13,7 +13,6 @@ struct vertex
 {
 	glm::vec3 position;
 	glm::vec2 texCoord;
-	float texID;
 	int faceType = 0;
 
 };
@@ -37,27 +36,26 @@ public:
 	quadRenderer(const int maxVertexCount);
 	~quadRenderer();
 
-	void draw(camera* cam);
 
 	quad createQuadFront(float x, float y, float  z, float textureID, float size) 
 	{
 		quad targetQuad;
 		targetQuad.vertices[0].position = {x,y,z};
 		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
-		targetQuad.vertices[0].texID = textureID;
+		
 		
 
 		targetQuad.vertices[1].position = { x + size,y,z };
 		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
-		targetQuad.vertices[0].texID = textureID;
+		
 
 		targetQuad.vertices[2].position = { x + size,y + size,z };
 		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
-		targetQuad.vertices[0].texID = textureID;
+		
 
 		targetQuad.vertices[3].position = { x,y + size,z };
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
-		targetQuad.vertices[0].texID = textureID;
+		
 
 		targetQuad.vertices->faceType = 1;
 	
@@ -70,23 +68,23 @@ public:
 		quad targetQuad;
 		targetQuad.vertices[0].position = { x,y,z};
 		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
-		targetQuad.vertices[0].texID = textureID;
+		
 		
 
 
 		targetQuad.vertices[1].position = { x,y,z + size };
 		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
-		targetQuad.vertices[1].texID = textureID;
+		
 		
 
 		targetQuad.vertices[2].position = { x + size,y,z + size};
 		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
-		targetQuad.vertices[2].texID = textureID;
+		
 		
 
 		targetQuad.vertices[3].position = { x + size,y,z };
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
-		targetQuad.vertices[3].texID = textureID;
+		
 		
 		targetQuad.vertices->faceType = 1;
 
@@ -99,25 +97,25 @@ public:
 		quad targetQuad;
 		targetQuad.vertices[0].position = { x,y + size,z };
 		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
-		targetQuad.vertices[0].texID = textureID;
+		
 		
 		
 
 		targetQuad.vertices[1].position = { x,y + size,z + size };
 		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
-		targetQuad.vertices[1].texID = textureID;
+		
 		
 		
 
 		targetQuad.vertices[2].position = { x + size,y + size,z + size };
 		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
-		targetQuad.vertices[2].texID = textureID;
+		
 		
 		
 
 		targetQuad.vertices[3].position = { x + size,y + size,z };
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
-		targetQuad.vertices[3].texID = textureID;
+		
 		
 		targetQuad.vertices->faceType = 1;
 
@@ -130,23 +128,23 @@ public:
 		quad targetQuad;
 		targetQuad.vertices[0].position = { x,y,z + size};
 		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
-		targetQuad.vertices[0].texID = textureID;
+		
 		
 		
 
 		targetQuad.vertices[1].position = { x + size,y,z + size};
 		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
-		targetQuad.vertices[1].texID = textureID;
+		
 		
 
 		targetQuad.vertices[2].position = { x + size,y + size,z + size};
 		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
-		targetQuad.vertices[2].texID = textureID;
+		
 		
 
 		targetQuad.vertices[3].position = { x,y + size,z + size};
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
-		targetQuad.vertices[3].texID = textureID;
+		
 		
 		targetQuad.vertices->faceType = 1;
 
@@ -159,24 +157,24 @@ public:
 		quad targetQuad;
 		targetQuad.vertices[0].position = { x,y,z };
 		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
-		targetQuad.vertices[0].texID = textureID;
+		
 		
 		
 
 		targetQuad.vertices[1].position = { x,y,z + size };
 		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
-		targetQuad.vertices[1].texID = textureID;
+		
 		
 
 		targetQuad.vertices[2].position = { x,y + size,z + size };
 		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
-		targetQuad.vertices[2].texID = textureID;
+		
 		
 		
 
 		targetQuad.vertices[3].position = { x,y + size,z };
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
-		targetQuad.vertices[3].texID = textureID;
+		
 		
 		targetQuad.vertices->faceType = 1;
 
@@ -189,25 +187,25 @@ public:
 		quad targetQuad;
 		targetQuad.vertices[0].position = { x + size,y,z };
 		targetQuad.vertices[0].texCoord = { 0.0f, 0.0f };
-		targetQuad.vertices[0].texID = textureID;
+		
 		
 		
 
 		targetQuad.vertices[1].position = { x + size,y,z + size };
 		targetQuad.vertices[1].texCoord = { 1.0f, 0.0f };
-		targetQuad.vertices[1].texID = textureID;
+		
 		
 		
 
 		targetQuad.vertices[2].position = { x + size,y + size,z + size };
 		targetQuad.vertices[2].texCoord = { 1.0f, 1.0f };
-		targetQuad.vertices[2].texID = textureID;
+		
 		
 		
 
 		targetQuad.vertices[3].position = { x + size,y + size,z };
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
-		targetQuad.vertices[3].texID = textureID;
+		
 		
 		targetQuad.vertices->faceType = 1;
 
@@ -215,28 +213,6 @@ public:
 
 	}
 
-	
-
-	cube m_cube(float x, float y, float z, const char* blockType) 
-	{
-		cube targetCube;
-		
-		
-			targetCube.quadFaces[0] = createQuadFront(x, y, z, 0.0f, 1.0f);
-			targetCube.quadFaces[1] = createQuadUp(x, y, z, 0.0f, 1.0f);
-			targetCube.quadFaces[2] = createQuadDown(x, y, z, 0.0f, 1.0f);
-			targetCube.quadFaces[3] = createQuadBack(x, y, z, 0.0f, 1.0f);
-			targetCube.quadFaces[4] = createQuadLeft(x, y, z, 0.0f, 1.0f);
-			targetCube.quadFaces[5] = createQuadRight(x, y, z, 0.0f, 1.0f);
-		
-
-		return targetCube;
-	}
-
-	void createCube(float x, float y, float z);
-
-	void CubeDetection();
-	std::vector<cube> buffer;
 
 	vertexArray* va;
 	vertexBuffer* vb;
@@ -244,10 +220,6 @@ public:
 	indexBuffer* ib;
 	shader* Shader;
 	texture* tex;
-
-	enum class faces { front, up, down, back, left, right };
-
-	faces currentFace = faces::front;
 
 private:
 

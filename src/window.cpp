@@ -72,7 +72,7 @@ void window::onUpdate()
 
         getFPS();
 
-        glfwSwapInterval(1);
+        //glfwSwapInterval(1);
 
         float offsetX = xpos- lastX;
         float offsetY = lastY - ypos;
