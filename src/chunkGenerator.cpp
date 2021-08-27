@@ -3,7 +3,7 @@
 
 
 chunkGen::chunkGen(int maxChunksizeXZ) :
-	quadRen(new quadRenderer(4000000)), m_maxChunkSizeXZ(maxChunksizeXZ)
+	quadRen(new quadRenderer(6000000)), m_maxChunkSizeXZ(maxChunksizeXZ)
 {
 
 }
@@ -40,23 +40,27 @@ void chunkGen::drawChunks(camera& cam)
 
 void chunkGen::cullblocks(chunk& targetChunk, int maxX, int maxZ)
 {
-	for (int i = 0; i < targetChunk.blocks.size() - 1; i++)
+	for (int i = 1; i < targetChunk.blocks.size() - 11; i++)
 	{
+		if (targetChunk.blocks[i + 4].vertices[0].position.x == targetChunk.blocks[i + 11].vertices[1].position.x)
+		{
+			targetChunk.blocks[i + 4].vertices->faceType = 0;
+			targetChunk.blocks[i + 11].vertices->faceType = 0;
+		}
+
 		
 
-	}
-
-	for (int i = 0; i < targetChunk.blocks.size() - maxX; i++)
-	{
+		if (targetChunk.blocks[i + 1].vertices[0].position.y == targetChunk.blocks[i + 7].vertices[3].position.y)
+		{
+			targetChunk.blocks[i + 1].vertices->faceType = 0;
+			targetChunk.blocks[i + 7].vertices->faceType = 0;
+		}
+		
 		
 	}
 
-	for (int i = 0; i < targetChunk.blocks.size() - (maxX * MAX_CUBE_Y); i++)
-	{
-		
-
-	}
-
+	
+	
 
 }
 
@@ -90,10 +94,9 @@ chunk chunkGen::GenChunk(int chunkOffsetX, int chunkOffsetZ, int maxChunkX, int 
 	}
 
 
-	
+	cullblocks(baseChunk, maxChunkX, maxChunkZ);
 	baseChunk.blocks.erase(std::remove_if(baseChunk.blocks.begin(), baseChunk.blocks.end(), [&](quad const& block) {return block.vertices->faceType == 0; }), baseChunk.blocks.end());
-	//cullblocks(baseChunk, maxChunkX, maxChunkZ);
-
+	
 	
 		
 
