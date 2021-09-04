@@ -56,6 +56,7 @@ public:
 		
 
 		targetQuad.vertices->faceType = 1;
+
 	
 		return targetQuad;
 
@@ -84,7 +85,8 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		
 		
-		targetQuad.vertices->faceType = 1;
+		targetQuad.vertices->faceType = 2;
+
 
 		return targetQuad;
 
@@ -115,7 +117,8 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		
 		
-		targetQuad.vertices->faceType = 1;
+		targetQuad.vertices->faceType = 3;
+
 
 		return targetQuad;
 
@@ -144,7 +147,8 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		
 		
-		targetQuad.vertices->faceType = 1;
+		targetQuad.vertices->faceType = 4;
+
 
 		return targetQuad;
 
@@ -174,7 +178,8 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		
 		
-		targetQuad.vertices->faceType = 1;
+		targetQuad.vertices->faceType = 5;
+
 
 		return targetQuad;
 
@@ -205,7 +210,8 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		
 		
-		targetQuad.vertices->faceType = 1;
+		targetQuad.vertices->faceType = 6;
+
 
 		return targetQuad;
 
@@ -226,9 +232,7 @@ private:
 	
 	const int m_maxVertexCount;
 	
-	bool terrainGen = false;
 
-	//normal variables for application use
 
 
 	

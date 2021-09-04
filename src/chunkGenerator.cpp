@@ -21,6 +21,7 @@ void chunkGen::drawChunks(camera& cam)
 	quadRen->Shader->bind();
 
 	quadRen->Shader->setUniform1i("u_texture", 0);
+	
 	quadRen->Shader->setUniformMat4("u_projection", cam.getProjection());
 	quadRen->Shader->setUniformMat4("u_view", cam.getView());
 
@@ -40,22 +41,35 @@ void chunkGen::drawChunks(camera& cam)
 
 void chunkGen::cullblocks(chunk& targetChunk, int maxX, int maxZ)
 {
-	for (int i = 1; i < targetChunk.blocks.size() - 11; i++)
+	for (int i = 5; i < targetChunk.blocks.size() - 5; i += 6)
 	{
-		if (targetChunk.blocks[i + 4].vertices[0].position.x == targetChunk.blocks[i + 11].vertices[1].position.x)
+		if (i&22) 
 		{
-			targetChunk.blocks[i + 4].vertices->faceType = 0;
-			targetChunk.blocks[i + 11].vertices->faceType = 0;
+			targetChunk.blocks[i].vertices->faceType = 0;
 		}
+			
+
+			
+		if(i+5%2)
+			targetChunk.blocks[i + 5].vertices->faceType = 0;
 
 		
+				
+	}
 
-		if (targetChunk.blocks[i + 1].vertices[0].position.y == targetChunk.blocks[i + 7].vertices[3].position.y)
-		{
-			targetChunk.blocks[i + 1].vertices->faceType = 0;
-			targetChunk.blocks[i + 7].vertices->faceType = 0;
-		}
-		
+	for (int i = 1; i < targetChunk.blocks.size() - 7; i += 6)
+	{
+		targetChunk.blocks[i + 7].vertices->faceType = 0;
+		targetChunk.blocks[i].vertices->faceType = 0;
+
+
+	}
+
+	for (int i = 0; i < targetChunk.blocks.size() -9; i+=6)
+	{
+		targetChunk.blocks[i + 9].vertices->faceType = 0;
+		targetChunk.blocks[i].vertices->faceType = 0;
+			
 		
 	}
 

@@ -4,7 +4,7 @@
 #include <algorithm>
 
 
-#define MAX_CUBE_Y 256
+#define MAX_CUBE_Y 128
 #define BASE_HEIGHT_Y 64
 
 
@@ -34,8 +34,8 @@ private:
 	std::unordered_map<unsigned int, chunk> m_chunkCache;
 	std::vector<chunk> m_rendererdChunks;
 	bool m_terrainGen = false;
-	int m_maxChunksX = 2;
-	int m_maxChunksZ = 2;
+	int m_maxChunksX = 1;
+	int m_maxChunksZ = 1;
 	int m_maxChunkSizeXZ;
 
 	enum class faces { front, up, down, back, left, right };
@@ -47,13 +47,17 @@ private:
 	void m_cube(float x, float y, float z, quadRenderer &quadrenderer, std::vector<quad>& blocks)
 	{
 		
-
-		blocks.push_back(quadrenderer.createQuadRight(x, y, z, 0.0f, 1.0f));
-		blocks.push_back(quadrenderer.createQuadLeft(x, y, z, 0.0f, 1.0f));
-		blocks.push_back(quadrenderer.createQuadBack(x, y, z, 0.0f, 1.0f));
-		blocks.push_back(quadrenderer.createQuadDown(x, y, z, 0.0f, 1.0f));
-		blocks.push_back(quadrenderer.createQuadUp(x, y, z, 0.0f, 1.0f));
 		blocks.push_back(quadrenderer.createQuadFront(x, y, z, 0.0f, 1.0f));
+		blocks.push_back(quadrenderer.createQuadUp(x, y, z, 0.0f, 1.0f));
+		blocks.push_back(quadrenderer.createQuadDown(x, y, z, 0.0f, 1.0f));
+		blocks.push_back(quadrenderer.createQuadBack(x, y, z, 0.0f, 1.0f));
+		blocks.push_back(quadrenderer.createQuadLeft(x, y, z, 0.0f, 1.0f));
+		blocks.push_back(quadrenderer.createQuadRight(x, y, z, 0.0f, 1.0f));
+		
+		
+		
+		
+
 
 	}
 	
