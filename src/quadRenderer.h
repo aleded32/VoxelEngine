@@ -1,7 +1,6 @@
 #pragma once
 #include "vendor/glm/glm.hpp"
 #include <iostream>
-#include <vector>
 #include "vertexBuffer.h"
 #include "indexBuffer.h"
 #include "shader.h"
@@ -23,7 +22,10 @@ struct quad
 	vertex vertices[4];
 };
 
-
+struct cube 
+{
+	quad quadFaces[6];
+};
 
 
 
@@ -56,7 +58,6 @@ public:
 		
 
 		targetQuad.vertices->faceType = 1;
-
 	
 		return targetQuad;
 
@@ -85,8 +86,7 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		
 		
-		targetQuad.vertices->faceType = 2;
-
+		targetQuad.vertices->faceType = 1;
 
 		return targetQuad;
 
@@ -117,8 +117,7 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		
 		
-		targetQuad.vertices->faceType = 3;
-
+		targetQuad.vertices->faceType = 1;
 
 		return targetQuad;
 
@@ -147,8 +146,7 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		
 		
-		targetQuad.vertices->faceType = 4;
-
+		targetQuad.vertices->faceType = 1;
 
 		return targetQuad;
 
@@ -178,8 +176,7 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		
 		
-		targetQuad.vertices->faceType = 5;
-
+		targetQuad.vertices->faceType = 1;
 
 		return targetQuad;
 
@@ -210,8 +207,7 @@ public:
 		targetQuad.vertices[3].texCoord = { 0.0f, 1.0f };
 		
 		
-		targetQuad.vertices->faceType = 6;
-
+		targetQuad.vertices->faceType = 1;
 
 		return targetQuad;
 
@@ -232,7 +228,9 @@ private:
 	
 	const int m_maxVertexCount;
 	
+	bool terrainGen = false;
 
+	//normal variables for application use
 
 
 	
