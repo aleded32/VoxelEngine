@@ -4,8 +4,8 @@
 #include <algorithm>
 
 
-#define MAX_CUBE_Y 64
-#define BASE_HEIGHT_Y 33
+#define MAX_CUBE_Y 256
+#define BASE_HEIGHT_Y 64
 
 
 struct chunk
@@ -33,9 +33,10 @@ private:
 	quadRenderer* quadRen;
 	std::unordered_map<unsigned int, chunk> m_chunkCache;
 	std::vector<quad> m_rendererdChunks;
+
 	bool m_terrainGen = false;
-	int m_maxChunksX = 3;
-	int m_maxChunksZ = 3;
+	int m_maxChunksX;
+	int m_maxChunksZ;
 	int m_maxChunkSizeXZ;
 
 	enum class faces { front, up, down, back, left, right };
