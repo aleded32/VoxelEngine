@@ -26,10 +26,10 @@ public:
 
 private:
 
-	void cullblocks(chunk& targetChunk, int maxX, int maxZ);
+	void cullblocks(chunk& targetChunk, int maxX);
 	
 
-	void GenChunk(int chunkOffsetX, int chunkOffsetZ,  int maxChunkX, int maxChunkZ);
+	void GenChunk(int maxChunkX, int maxChunkZ);
 	quadRenderer* quadRen;
 	std::unordered_map<unsigned int, chunk> m_chunkCache;
 	std::vector<quad> m_rendererdChunks;
@@ -38,6 +38,7 @@ private:
 	int m_maxChunksX;
 	int m_maxChunksZ;
 	int m_maxChunkSizeXZ;
+
 
 	enum class faces { front, up, down, back, left, right };
 

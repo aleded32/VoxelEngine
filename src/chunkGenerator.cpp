@@ -3,7 +3,7 @@
 
 
 chunkGen::chunkGen(int maxChunksizeXZ) :
-	quadRen(new quadRenderer(7000000)), m_maxChunkSizeXZ(maxChunksizeXZ), m_maxChunksX(1), m_maxChunksZ(4)
+	quadRen(new quadRenderer(5000000)), m_maxChunkSizeXZ(maxChunksizeXZ), m_maxChunksX(3), m_maxChunksZ(3)
 {
 
 }
@@ -38,8 +38,10 @@ void chunkGen::drawChunks(camera& cam)
 
 
 
-void chunkGen::cullblocks(chunk &targetChunk,int maxX, int maxZ)
+void chunkGen::cullblocks(chunk &targetChunk,int maxX)
 {
+	
+	
 	for (int i = 0; i < targetChunk.blocks.size() - 1; i++)
 	{
 		
@@ -88,17 +90,20 @@ void chunkGen::cullblocks(chunk &targetChunk,int maxX, int maxZ)
 
 }
 
-void chunkGen::GenChunk(int chunkOffsetX, int chunkOffsetZ, int maxChunkX, int maxChunkZ)
+void chunkGen::GenChunk(int maxChunkX, int maxChunkZ)
 {
 	chunk baseChunk;
+	
+
+	
 
 
-	for (float z = chunkOffsetZ; z < maxChunkZ; z++)
+	for (float z = 0; z < maxChunkZ; z++)
 	{
 		for (float y = 0; y < MAX_CUBE_Y; y++)
 		{
 
-			for (float x = chunkOffsetX; x < maxChunkX; x++)
+			for (float x = 0; x < maxChunkX; x++)
 			{
 
 
@@ -119,7 +124,7 @@ void chunkGen::GenChunk(int chunkOffsetX, int chunkOffsetZ, int maxChunkX, int m
 
 
 	
-	cullblocks(baseChunk, maxChunkX, maxChunkZ);
+	cullblocks(baseChunk, maxChunkX);
 
 	for (int i = 0; i < baseChunk.blocks.size(); i++)
 	{
@@ -155,14 +160,10 @@ void chunkGen::GenChunks()
 	if (m_terrainGen == false)
 	{
 		
-		for (int i = 0; i < m_maxChunksZ * m_maxChunkSizeXZ; i += 16)
-		{
-			for (int j = 0; j < m_maxChunksX * m_maxChunkSizeXZ; j += 16)
-			{
-				GenChunk(j, i, m_maxChunksX * m_maxChunkSizeXZ, m_maxChunksZ * m_maxChunkSizeXZ);
+		
+				GenChunk(m_maxChunksX * m_maxChunkSizeXZ, m_maxChunksZ * m_maxChunkSizeXZ);
 				
-			}
-		}
+			
 		
 		
 		m_terrainGen = true;
