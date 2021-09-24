@@ -3,7 +3,7 @@
 
 
 chunkGen::chunkGen(int maxChunksizeXZ) :
-	quadRen(new quadRenderer(5000000)), m_maxChunkSizeXZ(maxChunksizeXZ), m_maxChunksX(3), m_maxChunksZ(3)
+	quadRen(new quadRenderer(500000)), m_maxChunkSizeXZ(maxChunksizeXZ), m_maxChunksX(4), m_maxChunksZ(4)
 {
 
 }
@@ -41,7 +41,8 @@ void chunkGen::drawChunks(camera& cam)
 void chunkGen::cullblocks(chunk &targetChunk,int maxX)
 {
 	
-	
+	std::cout << targetChunk.blocks.size() << std::endl;
+
 	for (int i = 0; i < targetChunk.blocks.size() - 1; i++)
 	{
 		
@@ -92,7 +93,7 @@ void chunkGen::cullblocks(chunk &targetChunk,int maxX)
 
 void chunkGen::GenChunk(int maxChunkX, int maxChunkZ)
 {
-	chunk baseChunk;
+	
 	
 
 	
@@ -106,53 +107,79 @@ void chunkGen::GenChunk(int maxChunkX, int maxChunkZ)
 			for (float x = 0; x < maxChunkX; x++)
 			{
 
+				if ((int)x >= 15 * currentChunk && (int)y >= 255 && (int)z >= 15 * currentChunk)
+				{
 
 
+					cullblocks(tmpChunk, m_maxChunksX * m_maxChunkSizeXZ);
+					chunklist.push_back(tmpChunk);
 
-				if (y > BASE_HEIGHT_Y)
-					baseChunk.blocks.push_back(cube{});
+					tmpChunk.blocks.clear();
+					currentChunk++;
+
+				}
 				else
-					m_cube(x, y, z, *quadRen, baseChunk.blocks);
+				{
 
-				
+					if (y > BASE_HEIGHT_Y)
+						tmpChunk.blocks.push_back(cube{});
+					else
+					{
+						targetCube.quadFaces[0] = quadRen->createQuadFront(x, y, z, 0.0f, 1.0f);
+						targetCube.quadFaces[1] = quadRen->createQuadUp(x, y, z, 0.0f, 1.0f);
+						targetCube.quadFaces[2] = quadRen->createQuadDown(x, y, z, 0.0f, 1.0f);
+						targetCube.quadFaces[3] = quadRen->createQuadBack(x, y, z, 0.0f, 1.0f);
+						targetCube.quadFaces[4] = quadRen->createQuadLeft(x, y, z, 0.0f, 1.0f);
+						targetCube.quadFaces[5] = quadRen->createQuadRight(x, y, z, 0.0f, 1.0f);
 
 
+						tmpChunk.blocks.push_back(targetCube);
+					}
 
+
+				}
 			}
 		}
 	}
 
 
 	
-	cullblocks(baseChunk, maxChunkX);
 
-	for (int i = 0; i < baseChunk.blocks.size(); i++)
+	for (const auto& chunk : chunklist)
 	{
-		for (int j = 0; j < 6; j++)
+
+		for (int i = 0; i < chunk.blocks.size(); i++)
 		{
-			if (baseChunk.blocks[i].quadFaces[j].vertices->faceType == 1)
+			for (int j = 0; j < 6; j++)
 			{
-				viewableBlocks.push_back(baseChunk.blocks[i].quadFaces[j]);
+				if (chunk.blocks[i].quadFaces[j].vertices->faceType == 1)
+				{
+					viewableBlocks.push_back(chunk.blocks[i].quadFaces[j]);
+				}
 			}
 		}
 	}
-		
-
 	
-		
-		
-		/*for (auto i : m_chunkCache)
-		{
-			if (i.second.blocks[0].quadFaces[0].vertices[0].position.x != baseChunk.blocks[0].quadFaces[0].vertices[0].position.x)
-			{
-				i.second = baseChunk;
-			}
-		}*/
-
-		
 	
 
 	
+	
+		
+
+	
+	
+
+	
+}
+
+void chunkGen::proceduralChunkGen(const glm::vec3& playerPos)
+{
+	int currentChunkPosZ = ((int)playerPos.z / 16) * 16;
+	int currentChunkPosX = ((int)playerPos.x / 16) * 16;
+	
+	
+	
+
 }
 
 void chunkGen::GenChunks()

@@ -1,7 +1,7 @@
 ﻿  chunkGenerator.cpp
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(45,20): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(57,20): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(70,20): warning C4018: '<': signed/unsigned mismatch
-D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(129,20): warning C4018: '<': signed/unsigned mismatch
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(46,20): warning C4018: '<': signed/unsigned mismatch
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(58,20): warning C4018: '<': signed/unsigned mismatch
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(71,20): warning C4018: '<': signed/unsigned mismatch
+D:\GitHub\VoxelEngine\src\chunkGenerator.cpp(151,21): warning C4018: '<': signed/unsigned mismatch
 D:\GitHub\VoxelEngine\src\shader.h(65): warning C4715: 'shader::getUniformLocation': not all control paths return a value
   VoxelEngine.vcxproj -> D:\GitHub\VoxelEngine\Debug\VoxelEngine.exe

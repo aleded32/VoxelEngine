@@ -48,7 +48,7 @@ void window::onStart()
 
     cam = new camera(getWidth(), getHeight(), glm::radians(45.0f), 0.1f, 1000.0f);
 
-    camPosition = glm::vec3(0.0f, 67.0f, 0.0f);
+    camPosition = glm::vec3(16.0f, 67.0f, 16.0f);
     cam->setPositon(camPosition);
 
     cam->setCameraView();
@@ -107,6 +107,8 @@ void window::onUpdate()
             camPosition += glm::normalize(glm::cross(cam->m_camFront, cam->m_camUp)) * 0.2f;
 
         }
+
+        chunkGenerator->proceduralChunkGen(camPosition);
 
         
 

@@ -23,47 +23,38 @@ public:
 	
 	void GenChunks();
 
+	void proceduralChunkGen(const glm::vec3& playerDir);
+
 
 private:
 
-	void cullblocks(chunk& targetChunk, int maxX);
+	void cullblocks(chunk &targetChunk,int maxX);
 	
 
 	void GenChunk(int maxChunkX, int maxChunkZ);
 	quadRenderer* quadRen;
-	std::unordered_map<unsigned int, chunk> m_chunkCache;
-	std::vector<quad> m_rendererdChunks;
+	std::vector<chunk> chunklist;
+	
 
 	bool m_terrainGen = false;
 	int m_maxChunksX;
 	int m_maxChunksZ;
 	int m_maxChunkSizeXZ;
-
+	chunk baseChunk;
 
 	enum class faces { front, up, down, back, left, right };
 
+	
 
 	cube targetCube;
 
 	std::vector<quad> viewableBlocks;
+	int currentChunk = 1;
+	chunk tmpChunk;
 
-	void m_cube(float x, float y, float z, quadRenderer &quadrenderer, std::vector<cube>& blocks)
-	{
-		
-
-
-		targetCube.quadFaces[0] = quadrenderer.createQuadFront(x, y, z, 0.0f, 1.0f);
-		targetCube.quadFaces[1] = quadrenderer.createQuadUp(x, y, z, 0.0f, 1.0f);
-		targetCube.quadFaces[2] = quadrenderer.createQuadDown(x, y, z, 0.0f, 1.0f);
-		targetCube.quadFaces[3] = quadrenderer.createQuadBack(x, y, z, 0.0f, 1.0f);
-		targetCube.quadFaces[4] = quadrenderer.createQuadLeft(x, y, z, 0.0f, 1.0f);
-		targetCube.quadFaces[5] = quadrenderer.createQuadRight(x, y, z, 0.0f, 1.0f);
-
-
-		blocks.push_back(targetCube);
-	}
 	
-
+	
+	
 	
 };
 
